@@ -1,23 +1,22 @@
 <template>
   <NavBar />
-  <SinglePageHeaderVue />
-  <PageCart />
+  <SinglePageHeader />
+  <CheckOutPage />
   <AppFooter />
 </template>
 
 <script>
 import NavBar from "@/components/User/layout/NavBar.vue";
 import AppFooter from "@/components/User/layout/AppFooter.vue";
-import SinglePageHeaderVue from "@/components/User/cart/SinglePageHeader.vue";
-import PageCart from "@/components/User/cart/PageCart.vue";
-
+import SinglePageHeader from "@/components/checkout/SinglePageHeader.vue";
+import CheckOutPage from "@/components/checkout/CheckOutPage.vue";
 export default {
-  name: "CartView",
+  name: "CheckOutView",
   components: {
     NavBar,
     AppFooter,
-    SinglePageHeaderVue,
-    PageCart,
+    SinglePageHeader,
+    CheckOutPage,
   },
 };
 </script>
