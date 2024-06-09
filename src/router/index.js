@@ -28,6 +28,18 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/404View.vue"),
   },
+  {
+    path: "/cart",
+    name: "CartView",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/CartView.vue"),
+  },
+  {
+    path: "/checkout",
+    name: "CheckOutView",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/CheckoutView.vue"),
+  },
 ];
 
 const router = createRouter({
