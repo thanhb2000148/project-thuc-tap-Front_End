@@ -59,9 +59,9 @@
               >
             </a></router-link
           >
-          <a href="#" class="my-auto">
+         <router-link to="/login"> <a href="#" class="my-auto">
             <i class="fas fa-user fa-2x"></i>
-          </a>
+          </a></router-link>
         </div>
       </div>
     </nav>
