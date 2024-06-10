@@ -286,7 +286,7 @@
               <div class="row g-4 justify-content-center">
                 <div
                   class="col-md-6 col-lg-6 col-xl-4"
-                  v-for="item in products.data"
+                  v-for="item in products"
                   :key="item._id"
                 >
                   <div class="rounded position-relative fruite-item">
@@ -311,7 +311,9 @@
                         {{ item.DESC_PRODUCT }}
                       </p>
                       <div class="d-flex justify-content-between flex-lg-wrap">
-                        <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                        <p class="text-dark fs-5 fw-bold mb-0">
+                          {{ getPrice(item._id) }}
+                        </p>
                         <a
                           href="#"
                           class="btn border border-secondary rounded-pill px-3 text-primary"
@@ -339,6 +341,8 @@ import AppFooter from "@/components/User/layout/AppFooter.vue";
 import PaginationLayout from "@/components/User/layout/PaginationLayout.vue";
 
 import productService from "@/services/product.service";
+import PriceService from "@/services/price.service";
+
 export default {
   name: "ShopView",
   components: {
@@ -349,6 +353,7 @@ export default {
   data() {
     return {
       products: [],
+      prices: [],
     };
   },
 
@@ -356,6 +361,8 @@ export default {
     try {
       await this.getProduct();
       console.log("Mảng products:", this.products);
+      await this.getPriceProduct();
+      console.log("Mãng prices:", this.prices);
     } catch (error) {
       console.error("Error during component initialization:", error);
     }
@@ -365,13 +372,43 @@ export default {
       try {
         const response = await productService.getAll();
         if (response && response.data) {
-          this.products = response.data;
+          this.products = response.data; // Lưu mảng sản phẩm vào this.products
         } else {
           console.error("Unexpected response structure:", response);
         }
       } catch (error) {
         console.error("Error fetching products:", error);
         throw error; // Re-throw error to be caught by the caller
+      }
+    },
+    async getPriceProduct() {
+      try {
+        // Kiểm tra nếu this.products là một mảng
+        if (Array.isArray(this.products)) {
+          const prices = {};
+          for (const product of this.products) {
+            const response = await PriceService.getDefaultPrice(product._id);
+            if (response && response.data && response.data[0]) {
+              prices[product._id] = response.data[0].PRICE_NUMBER;
+            } else {
+              console.error("Unexpected response structure:", response);
+            }
+          }
+          this.prices = prices; // Cập nhật trạng thái `prices`
+        } else {
+          console.error("products is not an array:", this.products);
+        }
+      } catch (error) {
+        console.error("lỗi khi lấy giá:", error);
+        throw error; // Re-throw error to be caught by the caller
+      }
+    },
+    getPrice(productId) {
+      const price = this.prices[productId];
+      if (price) {
+        return price;
+      } else {
+        return "không tồn tại giá";
       }
     },
   },
