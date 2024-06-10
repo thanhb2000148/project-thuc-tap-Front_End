@@ -8,26 +8,26 @@
         <div class="row g-4">
           <div class="col-lg-3">
             <a href="#">
-              <h1 class="text-primary mb-0">Fruitables</h1>
-              <p class="text-secondary mb-0">Fresh products</p>
+              <h1 class="text-primary mb-0">Không lo về giá</h1>
+              <p class="text-secondary mb-0">Mua sắm thả ga</p>
             </a>
           </div>
-          <div class="col-lg-6">
+          <!-- <div class="col-lg-6">
             <div class="position-relative mx-auto">
               <input
                 class="form-control border-0 w-100 py-3 px-4 rounded-pill"
                 type="number"
-                placeholder="Your Email"
+                placeholder="Email của bạn"
               />
               <button
                 type="submit"
                 class="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill text-white"
                 style="top: 0; right: 0"
               >
-                Subscribe Now
+                Theo dõi ngay
               </button>
             </div>
-          </div>
+          </div> -->
           <div class="col-lg-3">
             <div class="d-flex justify-content-end pt-3">
               <a
@@ -57,48 +57,46 @@
       <div class="row g-5">
         <div class="col-lg-3 col-md-6">
           <div class="footer-item">
-            <h4 class="text-light mb-3">Why People Like us!</h4>
+            <h4 class="text-light mb-3">Tại sao mọi người thích chúng tôi!</h4>
             <p class="mb-4">
-              typesetting, remaining essentially unchanged. It was popularised
-              in the 1960s with the like Aldus PageMaker including of Lorem
-              Ipsum.
+             Đây là nơi mua hàng online nhanh chóng tiện lợi, giúp mọi người có thể xem sản phẩm, xem giá sản phẩm trực tiếp trên trang
             </p>
             <a
               href=""
               class="btn border-secondary py-2 px-4 rounded-pill text-primary"
-              >Read More</a
+              >Đọc thêm</a
             >
           </div>
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="d-flex flex-column text-start footer-item">
-            <h4 class="text-light mb-3">Shop Info</h4>
-            <a class="btn-link" href="">About Us</a>
-            <a class="btn-link" href="">Contact Us</a>
-            <a class="btn-link" href="">Privacy Policy</a>
-            <a class="btn-link" href="">Terms & Condition</a>
-            <a class="btn-link" href="">Return Policy</a>
-            <a class="btn-link" href="">FAQs & Help</a>
+            <h4 class="text-light mb-3">Thông tin liên hệ</h4>
+            <a class="btn-link" href="">Về chúng tôi</a>
+            <a class="btn-link" href="">Liên hệ chúng tôi</a>
+            <a class="btn-link" href="">Chính sách bảo mật</a>
+            <a class="btn-link" href="">Điều khoản & Điều kiện</a>
+            <a class="btn-link" href="">Chính sách hoàn trả</a>
+            <a class="btn-link" href="">Câu hỏi thường gặp và trợ giúp</a>
           </div>
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="d-flex flex-column text-start footer-item">
-            <h4 class="text-light mb-3">Account</h4>
-            <a class="btn-link" href="">My Account</a>
-            <a class="btn-link" href="">Shop details</a>
-            <a class="btn-link" href="">Shopping Cart</a>
-            <a class="btn-link" href="">Wishlist</a>
-            <a class="btn-link" href="">Order History</a>
-            <a class="btn-link" href="">International Orders</a>
+            <h4 class="text-light mb-3">Tài khoản</h4>
+            <a class="btn-link" href="">Tài khoản của tôi</a>
+            <a class="btn-link" href="">Chi tiết cửa hàng</a>
+            <a class="btn-link" href="">Giỏ hàng</a>
+            <a class="btn-link" href="">Danh sách yêu thích</a>
+            <a class="btn-link" href="">Lịch sử mua hàng</a>
+            <a class="btn-link" href="">Đơn đặt hàng quốc tế</a>
           </div>
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="footer-item">
-            <h4 class="text-light mb-3">Contact</h4>
-            <p>Address: 1429 Netus Rd, NY 48247</p>
+            <h4 class="text-light mb-3">Liên hệ</h4>
+            <p>Địa chỉ: Hưng Phú, Cái Răng, Cần Thơ</p>
             <p>Email: Example@gmail.com</p>
-            <p>Phone: +0123 4567 8910</p>
-            <p>Payment Accepted</p>
+            <p>Điện thoại: +0123 4567 8910</p>
+            <p>Thanh toán được chấp nhận</p>
             <img src="img/payment.png" class="img-fluid" alt="" />
           </div>
         </div>

@@ -5,12 +5,12 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">Products</th>
-              <th scope="col">Name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Total</th>
-              <th scope="col">Handle</th>
+              <th scope="col">Các sản phẩm</th>
+              <th scope="col">Tên</th>
+              <th scope="col">Giá</th>
+              <th scope="col">Số lượng</th>
+              <th scope="col">Tổng cộng</th>
+              <th scope="col">Xử lý</th>
             </tr>
           </thead>
           <tbody>
@@ -168,13 +168,13 @@
         <input
           type="text"
           class="border-0 border-bottom rounded me-5 py-3 mb-4"
-          placeholder="Coupon Code"
+          placeholder="Mã giảm giá"
         />
         <button
           class="btn border-secondary rounded-pill px-4 py-3 text-primary"
           type="button"
         >
-          Apply Coupon
+          Áp dụng phiếu giảm giá
         </button>
       </div>
       <div class="row g-4 justify-content-end">
@@ -183,31 +183,31 @@
           <div class="bg-light rounded">
             <div class="p-4">
               <h1 class="display-6 mb-4">
-                Cart <span class="fw-normal">Total</span>
+                Tổng<span class="fw-normal"> hóa đơn </span>
               </h1>
               <div class="d-flex justify-content-between mb-4">
-                <h5 class="mb-0 me-4">Subtotal:</h5>
-                <p class="mb-0">$96.00</p>
+                <h5 class="mb-0 me-4">Tổng:</h5>
+                <p class="mb-0">96.0000</p>
               </div>
               <div class="d-flex justify-content-between">
-                <h5 class="mb-0 me-4">Shipping</h5>
+                <h5 class="mb-0 me-4">Phí vận chuyển</h5>
                 <div class="">
-                  <p class="mb-0">Flat rate: $3.00</p>
+                  <p class="mb-0">An Giang:300k</p>
                 </div>
               </div>
-              <p class="mb-0 text-end">Shipping to Ukraine.</p>
+              <p class="mb-0 text-end">Vận chuyển đến...</p>
             </div>
             <div
               class="py-4 mb-4 border-top border-bottom d-flex justify-content-between"
             >
-              <h5 class="mb-0 ps-4 me-4">Total</h5>
+              <h5 class="mb-0 ps-4 me-4">Tổng cộng</h5>
               <p class="mb-0 pe-4">$99.00</p>
             </div>
             <button
               class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
               type="button"
             >
-              Proceed Checkout
+              Tiến hành thanh toán
             </button>
           </div>
         </div>
