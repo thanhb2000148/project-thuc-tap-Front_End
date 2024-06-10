@@ -6,7 +6,7 @@ class ProductService {
   async getAll() {
     try {
       const response = await this.api.get("/");
-      return response;
+      return response.data;
     } catch (error) {
       console.error(error);
       throw error;
