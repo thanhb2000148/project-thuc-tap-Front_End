@@ -86,41 +86,42 @@ export default {
     };
   },
   methods: {
-    register() {
-      axios
-        .post("http://localhost:8000/v1/auth/register", {
-          first_name: this.formData.first_name,
-          middle_name: this.formData.middle_name,
-          last_name: this.formData.last_name,
-          user_name: this.formData.user_name,
-          email_user: this.formData.email_user,
-          phone_number: this.formData.phone_number,
-          password: this.formData.password,
-          gender: this.formData.gender, // Giữ trường gender trong yêu cầu
-        })
-        .then((response) => {
-          this.message = "Đăng ký thành công!";
-          this.alertClass = "alert-success";
-          console.log("Success:", response);
-          this.$router.push({ name: "Login" });
-        })
-        .catch((error) => {
-          if (error.response) {
-            this.message = `Lỗi: ${error.response.data}`;
-            this.alertClass = "alert-danger";
-            console.log("Error response:", error.response.data);
-          } else if (error.request) {
-            this.message = "Không nhận được phản hồi từ server.";
-            this.alertClass = "alert-warning";
-            console.log("Error request:", error.request);
-          } else {
-            this.message = `Lỗi: ${error.message}`;
-            this.alertClass = "alert-danger";
-            console.log("Error message:", error.message);
-          }
-        });
-    },
+  register() {
+    axios
+      .post("http://localhost:8000/v1/auth/register", {
+        first_name: this.formData.first_name,
+        middle_name: this.formData.middle_name,
+        last_name: this.formData.last_name,
+        user_name: this.formData.user_name,
+        email_user: this.formData.email_user,
+        phone_number: this.formData.phone_number,
+        password: this.formData.password,
+        // Không bao gồm trường gender trong yêu cầu
+      })
+      .then((response) => {
+        this.message = "Đăng ký thành công!";
+        this.alertClass = "alert-success";
+        console.log("Success:", response);
+        this.$router.push({ name: "Login" });
+      })
+      .catch((error) => {
+        if (error.response) {
+          this.message = `Lỗi: ${error.response.data}`;
+          this.alertClass = "alert-danger";
+          console.log("Error response:", error.response.data);
+        } else if (error.request) {
+          this.message = "Không nhận được phản hồi từ server.";
+          this.alertClass = "alert-warning";
+          console.log("Error request:", error.request);
+        } else {
+          this.message = `Lỗi: ${error.message}`;
+          this.alertClass = "alert-danger";
+          console.log("Error message:", error.message);
+        }
+      });
   },
+},
+
 };
 </script>
 
