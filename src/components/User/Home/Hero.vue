@@ -3,24 +3,11 @@
     <div class="container py-5">
       <div class="row g-5 align-items-center">
         <div class="col-md-12 col-lg-7">
-          <h4 class="mb-3 text-secondary">100% Organic Foods</h4>
+          <h4 class="mb-3 text-secondary">Mua hàng nhanh chóng, tiện lợi</h4>
           <h1 class="mb-5 display-3 text-primary">
-            Organic Veggies & Fruits Foods
+           Thương Mại Điện Tử
           </h1>
-          <div class="position-relative mx-auto">
-            <input
-              class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill"
-              type="number"
-              placeholder="Search"
-            />
-            <button
-              type="submit"
-              class="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100"
-              style="top: 0; right: 25%"
-            >
-              Submit Now
-            </button>
-          </div>
+          
         </div>
         <div class="col-md-12 col-lg-5">
           <div
@@ -35,7 +22,7 @@
                   class="img-fluid w-100 h-100 bg-secondary rounded"
                   alt="First slide"
                 />
-                <a href="#" class="btn px-4 py-2 text-white rounded">Fruites</a>
+                <a href="#" class="btn px-4 py-2 text-white rounded">Thời trang</a>
               </div>
               <div class="carousel-item rounded">
                 <img
@@ -44,7 +31,7 @@
                   alt="Second slide"
                 />
                 <a href="#" class="btn px-4 py-2 text-white rounded"
-                  >Vesitables</a
+                  >Điện thoại</a
                 >
               </div>
             </div>

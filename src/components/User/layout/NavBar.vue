@@ -2,7 +2,7 @@
   <div class="container px-0">
     <nav class="navbar navbar-light bg-white navbar-expand-xl">
       <a href="index.html" class="navbar-brand"
-        ><h1 class="text-primary display-6">Fruitables</h1></a
+        ><h1 class="text-primary display-6">Không lo về giá</h1></a
       >
       <button
         class="navbar-toggler py-2 px-3"
@@ -15,30 +15,30 @@
       <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
         <div class="navbar-nav mx-auto">
           <router-link to="/"
-            ><a class="nav-item nav-link active">Home</a></router-link
+            ><a class="nav-item nav-link active">Trang chủ</a></router-link
           >
           <router-link to="/shop"
-            ><a class="nav-item nav-link">Shop</a></router-link
+            ><a class="nav-item nav-link">Cửa hàng</a></router-link
           >
           <router-link to=""
-            ><a class="nav-item nav-link">Shop Detail</a></router-link
+            ><a class="nav-item nav-link">Chi tiết cửa hàng</a></router-link
           >
           <div class="nav-item dropdown">
             <a
               href="#"
               class="nav-link dropdown-toggle"
               data-bs-toggle="dropdown"
-              >Pages</a
+              >Trang</a
             >
             <div class="dropdown-menu m-0 bg-secondary rounded-0">
-              <a href="cart.html" class="dropdown-item">Cart</a>
-              <a href="chackout.html" class="dropdown-item">Chackout</a>
-              <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-              <a href="404.html" class="dropdown-item">404 Page</a>
+              <a href="cart.html" class="dropdown-item">Giỏ hàng</a>
+              <a href="chackout.html" class="dropdown-item">Thanh toán</a>
+              <a href="testimonial.html" class="dropdown-item">Đánh giá sản phẩm</a>
+              <a href="404.html" class="dropdown-item">Lỗi trang</a>
             </div>
           </div>
           <router-link to=""
-            ><a class="nav-item nav-link">Contact</a></router-link
+            ><a class="nav-item nav-link">Liên hệ</a></router-link
           >
         </div>
         <div class="d-flex m-3 me-0">
