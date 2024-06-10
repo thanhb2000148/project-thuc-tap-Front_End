@@ -4,7 +4,7 @@
       <div class="tab-class text-center">
         <div class="row g-4">
           <div class="col-lg-4 text-start">
-            <h1>Our Organic Products</h1>
+            <h1>Các sản phẩm của chúng tôi</h1>
           </div>
           <div class="col-lg-8 text-end">
             <ul class="nav nav-pills d-inline-flex text-center mb-5">
@@ -15,7 +15,7 @@
                   href="#tab-1"
                 >
                   <span class="text-dark" style="width: 130px"
-                    >All Products</span
+                    >Tất cả sản phẩm</span
                   >
                 </a>
               </li>
@@ -25,7 +25,7 @@
                   data-bs-toggle="pill"
                   href="#tab-2"
                 >
-                  <span class="text-dark" style="width: 130px">Vegetables</span>
+                  <span class="text-dark" style="width: 130px">Điện thoại</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -34,7 +34,7 @@
                   data-bs-toggle="pill"
                   href="#tab-3"
                 >
-                  <span class="text-dark" style="width: 130px">Fruits</span>
+                  <span class="text-dark" style="width: 130px">Thời trang</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -43,7 +43,7 @@
                   data-bs-toggle="pill"
                   href="#tab-4"
                 >
-                  <span class="text-dark" style="width: 130px">Bread</span>
+                  <span class="text-dark" style="width: 130px">Các loại bánh</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -52,7 +52,7 @@
                   data-bs-toggle="pill"
                   href="#tab-5"
                 >
-                  <span class="text-dark" style="width: 130px">Meat</span>
+                  <span class="text-dark" style="width: 130px">Phụ kiện khác</span>
                 </a>
               </li>
             </ul>
