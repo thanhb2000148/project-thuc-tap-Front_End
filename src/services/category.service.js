@@ -12,5 +12,14 @@ class CategoryService {
       throw error;
     }
   }
+  async getById(id) {
+    try {
+      const response = await this.api.get(`/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
 }
 export default new CategoryService();
