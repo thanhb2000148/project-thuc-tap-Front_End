@@ -24,5 +24,13 @@ class ProductService {
   async create(product) {
     return (await this.api.post("/", product)).data;
   }
+  async getProductByIdCategory(id) {
+    try {
+      const response = await this.api.get(`/category/${id}`);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 export default new ProductService();
