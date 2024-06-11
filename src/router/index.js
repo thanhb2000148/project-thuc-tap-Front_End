@@ -62,6 +62,20 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/OTP.vue"),
   },
+
+  {
+    path: "/otp/reset",
+    name: "resetOTP",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/EmailOTP.vue"),
+  },
+
+  {
+    path: "/userinformation",
+    name: "UserInformation",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/UserInformation.vue"),
+  },
   {
     path: "/shop/detail/:id",
     name: "UserDetail",
