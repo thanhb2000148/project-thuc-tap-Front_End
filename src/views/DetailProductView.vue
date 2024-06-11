@@ -65,11 +65,53 @@
               <a
                 href="#"
                 class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"
-                ><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                cart</a
+                ><i class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ hàng</a
               >
-            </div>
-            <div class="col-lg-12">
+
+
+              <div class="flex KIoPj6 W5LiQM">
+        <div class="flex flex-column">
+            <!-- Section for Colors -->
+            <section class="flex items-center" style="margin-bottom: 24px; align-items: baseline;">
+                <h3 class="From">Màu sắc</h3>
+                <div class="flex items-center Color">
+                    <button class="From2 selection-box-unselected btn-outline-secondary" aria-label="Trắng" aria-disabled="false"  onclick=" selectOption(this)">Trắng</button>
+                    <button class="From2 selection-box-unselected btn-outline-secondary" aria-label="Đen" aria-disabled="false"  onclick=" selectOption(this)">Đen</button>
+                    <button class="From2 selection-box-unselected btn-outline-secondary" aria-label="Xanh Dương" aria-disabled="false"  onclick=" selectOption(this)">Xanh Dương</button>
+                </div>
+            </section>
+            <!-- Section for Sizes -->
+            <section class="flex items-center" style="margin-bottom: 24px; align-items: baseline;">
+                <h3 class="From">Kích cỡ</h3>
+                <div class="flex items-center Color">
+                    <button class="From2 selection-box-unselected btn-outline-success" aria-label="S" aria-disabled="false" onclick=" selectOption(this)">S</button>
+                    <button class="From2 selection-box-unselected btn-outline-success" aria-label="M" aria-disabled="false" onclick=" selectOption(this)">M</button>
+                    <button class="From2 selection-box-unselected btn-outline-success" aria-label="L" aria-disabled="false" onclick=" selectOption(this)">L</button>
+                </div>
+            </section>
+            <!-- Section for Quantity -->
+            <!-- <section class="flex items-center OaFP0p">
+                <h3 class="From">Số lượng</h3>
+                <div class="flex items-center"> -->
+                    <!-- <div style="margin-right: 15px;">
+                        <div class="_9m0o30 shopee-input-quantity">
+                            <button aria-label="Decrease" class="suQW3X">
+                                <svg enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0" class="shopee-svg-icon">
+                                    <polygon points="4.5 4.5 3.5 4.5 0 4.5 0 5.5 3.5 5.5 4.5 5.5 10 5.5 10 4.5"></polygon>
+                                </svg>
+                            </button>
+                            <input class="suQW3X u00pLG" type="text" role="spinbutton" aria-live="assertive" aria-valuenow="1" value="1">
+                            <span aria-live="polite" class="Bf9ap6">Số lượng 1</span>
+                            <button aria-label="Increase" class="suQW3X">                                <svg enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0" class="shopee-svg-icon icon-plus-sign">
+                                    <polygon points="10 4.5 5.5 4.5 5.5 0 4.5 0 4.5 4.5 0 4.5 0 5.5 4.5 5.5 4.5 10 5.5 10 5.5 10 5.5"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                    </div> -->
+                <!-- </div>
+            </section> -->
+        </div>
+    </div>
               <nav>
                 <div class="nav nav-tabs mb-3">
                   <button
@@ -571,6 +613,103 @@ export default {
     },
   },
 };
+
+// function selectOption(button) {
+//         // Xóa lớp CSS được chọn từ tất cả các nút cùng một nhóm
+//         var buttons = button.parentNode.querySelectorAll('button');
+//         buttons.forEach(function(btn) {
+//             btn.classList.remove('selected');
+//         });
+//         // Thêm lớp CSS được chọn vào nút được nhấn
+//         button.classList.add('selected');
+// }
+
 </script>
 
-<style></style>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.KIoPj6 {
+    padding: 16px;
+}
+
+.W5LiQM {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.From {
+    margin: 0 16px 0 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.Color {
+    gap: 8px;
+}
+
+.From2 {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.selection-box-unselected:hover {
+    border-color: #aaa;
+}
+
+.selection-box-unselected:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.suQW3X {
+    border: 1px solid #ddd;
+    background-color: #fff;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.shopee-svg-icon {
+    width: 10px;
+    height: 10px;
+}
+
+.u00pLG {
+    text-align: center;
+    width: 40px;
+    border: none;
+    outline: none;
+}
+
+.Bf9ap6 {
+    display: none;
+}
+
+
+/* CSS code */
+.selected {
+        background-color: #007bff; /* Màu nền được chọn */
+        color: #fff; /* Màu văn bản được chọn */
+    }
+
+
+</style>
