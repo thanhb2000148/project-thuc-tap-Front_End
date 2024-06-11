@@ -17,7 +17,7 @@
                     <label class="form-label" :for="label">{{ field }}</label>
                   </div>
                   <div class="form-outline mb-4 text-center">
-                    <select v-model="formData.gender" id="gender" class="form-control form-control-lg">
+                    <select v-model="formData.gender_user" id="gender" class="form-control form-control-lg">
                       <option value="" disabled>Chọn giới tính</option>
                       <option value="male">Nam</option>
                       <option value="female">Nữ</option>
@@ -75,7 +75,7 @@ export default {
         email_user: "",
         phone_number: "",
         password: "",
-        gender: "",
+        gender_user: "",
       },
       message: "",
       alertClass: "",
@@ -92,7 +92,7 @@ export default {
         })
         .catch((error) => {
           if (error.response) {
-            this.message = `Lỗi: ${error.response.data}`;
+            this.message = `Lỗi: ${error.response.data.message}`;
             this.alertClass = "alert-danger";
           } else if (error.request) {
             this.message = "Không nhận được phản hồi từ server.";
