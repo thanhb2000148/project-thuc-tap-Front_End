@@ -49,7 +49,7 @@
                       <li>
                         <div class="d-flex justify-content-between fruite-name">
                           <a href="#"
-                            ><i class="fas fa-apple-alt me-2"></i>Apples</a
+                            ><i class="fas fa-apple-alt me-2"></i>Thời Trang</a
                           >
                           <span>(3)</span>
                         </div>
@@ -57,7 +57,7 @@
                       <li>
                         <div class="d-flex justify-content-between fruite-name">
                           <a href="#"
-                            ><i class="fas fa-apple-alt me-2"></i>Oranges</a
+                            ><i class="fas fa-apple-alt me-2"></i>Đồ Ăn</a
                           >
                           <span>(5)</span>
                         </div>
@@ -65,19 +65,19 @@
                       <li>
                         <div class="d-flex justify-content-between fruite-name">
                           <a href="#"
-                            ><i class="fas fa-apple-alt me-2"></i>Strawbery</a
+                            ><i class="fas fa-apple-alt me-2"></i>Điện Thoại</a
                           >
                           <span>(2)</span>
                         </div>
                       </li>
-                      <li>
+                      <!-- <li>
                         <div class="d-flex justify-content-between fruite-name">
                           <a href="#"
                             ><i class="fas fa-apple-alt me-2"></i>Banana</a
                           >
                           <span>(8)</span>
-                        </div>
-                      </li>
+                        </div> -->
+                      <!-- </li>
                       <li>
                         <div class="d-flex justify-content-between fruite-name">
                           <a href="#"
@@ -85,7 +85,7 @@
                           >
                           <span>(5)</span>
                         </div>
-                      </li>
+                      </li> --> 
                     </ul>
                   </div>
                 </div>
