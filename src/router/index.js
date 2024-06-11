@@ -55,20 +55,18 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Register.vue"),
   },
-<<<<<<< HEAD
 
   {
     path: "/otp",
     name: "OTP",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/OTP.vue"),
-=======
+  },
   {
     path: "/shop/detail/:id",
     name: "UserDetail",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/DetailProductView.vue"),
->>>>>>> 78883c37bfa4f7fcb5a48816c6614597b7ee5bb4
   },
 ];
 
