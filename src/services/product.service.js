@@ -6,14 +6,20 @@ class ProductService {
   async getAll() {
     try {
       const response = await this.api.get("/");
-      return response;
+      return response.data;
     } catch (error) {
       console.error(error);
       throw error;
     }
   }
   async getById(id) {
-    return (await this.api.get(`/${id}`)).data;
+    try {
+      const response = await this.api.get(`/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
   async create(product) {
     return (await this.api.post("/", product)).data;

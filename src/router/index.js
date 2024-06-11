@@ -31,6 +31,7 @@ const routes = [
   {
     path: "/cart",
     name: "CartView",
+    meta: {},
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/CartView.vue"),
   },
@@ -40,11 +41,37 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/CheckoutView.vue"),
   },
+
+  {
+    path: "/login",
+    name: "Login",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Login.vue"),
+  },
+
+  {
+    path: "/register",
+    name: "Register",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Register.vue"),
+  },
+
+  {
+    path: "/otp",
+    name: "OTP",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/OTP.vue"),
+  },
+  {
+    path: "/shop/detail/:id",
+    name: "UserDetail",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/DetailProductView.vue"),
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
-
 export default router;
