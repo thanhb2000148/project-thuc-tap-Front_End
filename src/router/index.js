@@ -58,6 +58,12 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/Register.vue"),
   },
 
+  {
+    path: "/otp",
+    name: "OTP",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/OTP.vue"),
+  },
 ];
 
 const router = createRouter({
