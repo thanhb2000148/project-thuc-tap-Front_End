@@ -1,18 +1,38 @@
 <template>
   <div class="login-page">
     <NavBar />
-    <div class="login-container d-flex align-items-center justify-content-center">
+    <div
+      class="login-container d-flex align-items-center justify-content-center"
+    >
       <div class="card login-card shadow-lg p-3 mb-5 bg-white rounded">
         <div class="card-body">
           <h5 class="card-title text-center mb-4">Đăng nhập</h5>
           <form @submit.prevent="login" class="px-md-2">
             <div data-mdb-input-init class="form-outline mb-4">
-              <input v-model="user_name" type="text" id="form2Example1" class="form-control text-center" />
-              <label class="form-label text-center text-muted" for="form2Example1">Tên người dùng</label>
+              <input
+                v-model="user_name"
+                type="text"
+                id="form2Example1"
+                class="form-control text-center"
+              />
+              <label
+                class="form-label text-center text-muted"
+                for="form2Example1"
+                >Tên người dùng</label
+              >
             </div>
             <div data-mdb-input-init class="form-outline mb-4">
-              <input v-model="password" type="password" id="form2Example2" class="form-control text-center" />
-              <label class="form-label text-center text-muted" for="form2Example2">Mật khẩu</label>
+              <input
+                v-model="password"
+                type="password"
+                id="form2Example2"
+                class="form-control text-center"
+              />
+              <label
+                class="form-label text-center text-muted"
+                for="form2Example2"
+                >Mật khẩu</label
+              >
             </div>
             <div class="text-center mb-4">
               <button type="submit" class="btn-custom-green">Đăng nhập</button>
@@ -20,7 +40,11 @@
           </form>
           <div class="text-center mb-4">
             <p class="text-muted">Trở thành thành viên của chúng tôi</p>
-            <p><strong class="register-link" @click="redirectToRegister">Đăng ký ngay</strong></p>
+            <p>
+              <strong class="register-link" @click="redirectToRegister"
+                >Đăng ký ngay</strong
+              >
+            </p>
           </div>
           <div v-if="errorMessage" class="alert alert-danger" role="alert">
             {{ errorMessage }}
@@ -36,7 +60,7 @@
 import AppFooter from "@/components/User/layout/AppFooter.vue";
 import NavBar from "@/components/User/layout/NavBar.vue";
 import AuthService from "@/services/auth.service";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 export default {
   name: "loginUser",
@@ -48,42 +72,45 @@ export default {
     return {
       user_name: "",
       password: "",
-      errorMessage: ""
+      errorMessage: "",
     };
   },
   methods: {
     async login() {
-  console.log("Bắt đầu yêu cầu đăng nhập");
-  try {
-    const data = await AuthService.login({
-      user_name: this.user_name,
-      password: this.password
-    });
-    console.log("Dữ liệu phản hồi:", data);
+      console.log("Bắt đầu yêu cầu đăng nhập");
+      try {
+        const data = await AuthService.login({
+          user_name: this.user_name,
+          password: this.password,
+        });
+        console.log("Dữ liệu phản hồi:", data.data);
 
-    // Kiểm tra xem biến data có tồn tại không
-    if (data && typeof data === 'object') {
-      // Kiểm tra xem biến data có thuộc tính accessToken không
-      if (data.accessToken) {
-        console.log("Đăng nhập thành công");
-        Cookies.set("access_token", data.accessToken, { expires: 1 });
-        Cookies.set("refresh_token", data.refreshToken, { expires: 1 });
-        this.$router.push("/");
-      } else {
-        throw new Error("Không có accessToken trong phản hồi");
+        // Kiểm tra xem biến data có tồn tại không
+        if (data && typeof data === "object") {
+          // Kiểm tra xem biến data có thuộc tính accessToken không
+          if (data.data.accessToken) {
+            console.log("Đăng nhập thành công");
+            Cookies.set("access_token", data.data.accessToken, { expires: 1 });
+            Cookies.set("refresh_token", data.data.refreshToken, {
+              expires: 1,
+            });
+            this.$router.push("/");
+          } else {
+            throw new Error("Không có accessToken trong phản hồi");
+          }
+        } else {
+          throw new Error("Dữ liệu phản hồi không hợp lệ");
+        }
+      } catch (error) {
+        console.error("Lỗi:", error);
+        this.errorMessage =
+          error.message || "Đăng nhập không thành công. Vui lòng thử lại sau.";
       }
-    } else {
-      throw new Error("Dữ liệu phản hồi không hợp lệ");
-    }
-  } catch (error) {
-    console.error("Lỗi:", error);
-    this.errorMessage = error.message || "Đăng nhập không thành công. Vui lòng thử lại sau.";
-  }
-},
+    },
     redirectToRegister() {
       this.$router.push("/register");
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -134,8 +161,8 @@ export default {
 }
 
 .btn-custom-green {
-  background-color: #81C408;
-  border-color: #81C408;
+  background-color: #81c408;
+  border-color: #81c408;
   border-radius: 10px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
