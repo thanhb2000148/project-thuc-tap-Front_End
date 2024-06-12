@@ -11,14 +11,86 @@
                   Thông Tin Đăng Ký
                 </h3>
                 <form class="px-md-2" @submit.prevent="register">
-                  <div v-for="(field, label) in formFields" :key="label" class="form-outline mb-4 text-center">
-                    <input v-model="formData[label]" type="text" :id="label" class="form-control form-control-lg" />
-                    <label class="form-label" :for="label">{{ field }}</label>
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input
+                      v-model="first_name"
+                      type="text"
+                      id="form3Example1q"
+                      class="form-control"
+                    />
+                    <label class="form-label" for="form3Example1q">Tên</label>
                   </div>
-                  <div class="form-outline mb-4 text-center">
-                    <input v-model="formData.avt" type="text" class="form-control form-control-lg" />
-                    <label class="form-label" for="avt">Nhập URL ảnh đại diện</label>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input
+                      v-model="middle_name"
+                      type="text"
+                      id="form3Example1q"
+                      class="form-control"
+                    />
+                    <label class="form-label" for="form3Example1q">Tên Đệm</label>
                   </div>
+                  
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input
+                      v-model="last_name"
+                      type="text"
+                      id="form3Example1q"
+                      class="form-control"
+                    />
+                    <label class="form-label" for="form3Example1q">Họ</label>
+                  </div>
+                  
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input
+                      v-model="user_name"
+                      type="text"
+                      id="form3Example1q"
+                      class="form-control"
+                    />
+                    <label class="form-label" for="form3Example1q">Tên Đăng nhập</label>
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input
+                      v-model="email_user"
+                      type="text"
+                      id="form3Example1q"
+                      class="form-control"
+                    />
+                    <label class="form-label" for="form3Example1q">Địa chỉ email</label>
+                  </div>
+                  
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input
+                      v-model="phone_number"
+                      type="text"
+                      id="form3Example1q"
+                      class="form-control"
+                    />
+                    <label class="form-label" for="form3Example1q">Số điện thoại</label>
+                  </div>
+                  
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input
+                      v-model="password"
+                      type="password"
+                      id="form3Example1q"
+                      class="form-control"
+                    />
+                    <label class="form-label" for="form3Example1q">Mật khẩu</label>
+                  </div>
+                  
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input
+                      v-model="password"
+                      type="password"
+                      id="form3Example1q"
+                      class="form-control"
+                    />
+                    <label class="form-label" for="form3Example1q">Nhập lại mật khẩu</label>
+                  </div>
+                  
                   <div class="form-outline mb-4 text-center">
                     <select v-model="formData.gender_user" id="gender" class="form-control form-control-lg">
                       <option value="" disabled>Chọn giới tính</option>
@@ -48,7 +120,7 @@
 </template>
 
 <script>
-import router from "@/router"; // Import router từ file router của bạn
+import router from "@/router";
 import AuthService from "@/services/auth.service";
 import AppFooter from "@/components/User/layout/AppFooter.vue";
 import NavBar from "@/components/User/layout/NavBar.vue";
@@ -79,43 +151,16 @@ export default {
         phone_number: "",
         password: "",
         gender_user: "",
-        avt: null,
+        //avt: null,
       },
       message: "",
       alertClass: "",
     };
   },
   methods: {
-    onFileChange(event) {
-      const file = event.target.files[0];
-      this.formData.avt = file;
-    },
     async register() {
-      // Kiểm tra xem trường "avt" đã được điền chưa
-      if (!this.formData.avt) {
-        this.message = "Vui lòng chọn ảnh đại diện.";
-        this.alertClass = "alert-danger";
-        return; // Dừng hàm register nếu trường "avt" không được điền
-      }
-
-      const formData = new FormData();
-      for (const key in this.formData) {
-        if (key === 'avt' && this.formData[key] instanceof File) {
-          const fileReader = new FileReader();
-          fileReader.readAsDataURL(this.formData[key]);
-          fileReader.onload = () => {
-            formData.append(key, fileReader.result);
-          };
-        } else {
-          formData.append(key, this.formData[key]);
-        }
-      }
-
-      // Log formData trước khi gửi
-      console.log("Form data:", formData);
-
       try {
-        const response = await AuthService.register(formData);
+        const response = await AuthService.register(this.formData);
         this.message = "Đăng ký thành công!";
         this.alertClass = "alert-success";
         console.log("Success response data:", response);
@@ -138,10 +183,10 @@ export default {
         }
       }
     },
+    
   },
 };
 </script>
-
 
 <style scoped>
 .alert {
