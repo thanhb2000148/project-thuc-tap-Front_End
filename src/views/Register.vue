@@ -10,11 +10,14 @@
                 <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2 text-center">
                   Thông Tin Đăng Ký
                 </h3>
-
                 <form class="px-md-2" @submit.prevent="register">
                   <div v-for="(field, label) in formFields" :key="label" class="form-outline mb-4 text-center">
                     <input v-model="formData[label]" type="text" :id="label" class="form-control form-control-lg" />
                     <label class="form-label" :for="label">{{ field }}</label>
+                  </div>
+                  <div class="form-outline mb-4 text-center">
+                    <input v-model="formData.avt" type="text" class="form-control form-control-lg" />
+                    <label class="form-label" for="avt">Nhập URL ảnh đại diện</label>
                   </div>
                   <div class="form-outline mb-4 text-center">
                     <select v-model="formData.gender_user" id="gender" class="form-control form-control-lg">
@@ -31,7 +34,6 @@
                     </button>
                   </div>
                 </form>
-
                 <div v-if="message" class="mt-3 alert" :class="alertClass">
                   {{ message }}
                 </div>
@@ -46,7 +48,8 @@
 </template>
 
 <script>
-import axios from "axios";
+import router from "@/router"; // Import router từ file router của bạn
+import AuthService from "@/services/auth.service";
 import AppFooter from "@/components/User/layout/AppFooter.vue";
 import NavBar from "@/components/User/layout/NavBar.vue";
 
@@ -76,36 +79,69 @@ export default {
         phone_number: "",
         password: "",
         gender_user: "",
+        avt: null,
       },
       message: "",
       alertClass: "",
     };
   },
   methods: {
-    register() {
-      axios
-        .post("http://localhost:8000/v1/auth/register", this.formData)
-        .then(() => {
-          this.message = "Đăng ký thành công!";
-          this.alertClass = "alert-success";
-          this.$router.push({ name: "OTP" });
-        })
-        .catch((error) => {
-          if (error.response) {
-            this.message = `Lỗi: ${error.response.data.message}`;
-            this.alertClass = "alert-danger";
-          } else if (error.request) {
-            this.message = "Không nhận được phản hồi từ server.";
-            this.alertClass = "alert-warning";
-          } else {
-            this.message = `Lỗi: ${error.message}`;
-            this.alertClass = "alert-danger";
-          }
-        });
+    onFileChange(event) {
+      const file = event.target.files[0];
+      this.formData.avt = file;
+    },
+    async register() {
+      // Kiểm tra xem trường "avt" đã được điền chưa
+      if (!this.formData.avt) {
+        this.message = "Vui lòng chọn ảnh đại diện.";
+        this.alertClass = "alert-danger";
+        return; // Dừng hàm register nếu trường "avt" không được điền
+      }
+
+      const formData = new FormData();
+      for (const key in this.formData) {
+        if (key === 'avt' && this.formData[key] instanceof File) {
+          const fileReader = new FileReader();
+          fileReader.readAsDataURL(this.formData[key]);
+          fileReader.onload = () => {
+            formData.append(key, fileReader.result);
+          };
+        } else {
+          formData.append(key, this.formData[key]);
+        }
+      }
+
+      // Log formData trước khi gửi
+      console.log("Form data:", formData);
+
+      try {
+        const response = await AuthService.register(formData);
+        this.message = "Đăng ký thành công!";
+        this.alertClass = "alert-success";
+        console.log("Success response data:", response);
+
+        // Chuyển hướng đến trang OTP
+        router.push({ name: 'OTP' }); // Thay 'OTPPage' bằng tên của route đến trang OTP của bạn
+      } catch (error) {
+        if (error.response) {
+          this.message = `Lỗi: ${error.response.data.message}`;
+          this.alertClass = "alert-danger";
+          console.error("Error response data:", error.response.data); // Debugging line
+        } else if (error.request) {
+          this.message = "Không nhận được phản hồi từ server.";
+          this.alertClass = "alert-warning";
+          console.error("Error request:", error.request); // Debugging line
+        } else {
+          this.message = `Lỗi: ${error.message}`;
+          this.alertClass = "alert-danger";
+          console.error("Error message:", error.message); // Debugging line
+        }
+      }
     },
   },
 };
 </script>
+
 
 <style scoped>
 .alert {
