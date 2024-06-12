@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar />
-    <section class="h-100 h-custom" style="background-color: #ffffff;">
+    <section class="h-100 h-custom" style="background-color: #ffffff">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-lg-7 col-xl-5">
@@ -11,88 +11,21 @@
                   Thông Tin Đăng Ký
                 </h3>
                 <form class="px-md-2" @submit.prevent="register">
-                  <div data-mdb-input-init class="form-outline mb-4">
-                    <input
-                      v-model="first_name"
-                      type="text"
-                      id="form3Example1q"
-                      class="form-control"
-                    />
-                    <label class="form-label" for="form3Example1q">Tên</label>
+                  <div v-for="(field, label) in formFields" :key="label" class="form-outline mb-4 text-center">
+                    <input v-model="formData[label]" type="text" :id="label" class="form-control form-control-lg" />
+                    <label class="form-label" :for="label">{{ field }}</label>
                   </div>
-
-                  <div data-mdb-input-init class="form-outline mb-4">
-                    <input
-                      v-model="middle_name"
-                      type="text"
-                      id="form3Example1q"
-                      class="form-control"
-                    />
-                    <label class="form-label" for="form3Example1q">Tên Đệm</label>
-                  </div>
-                  
-                  <div data-mdb-input-init class="form-outline mb-4">
-                    <input
-                      v-model="last_name"
-                      type="text"
-                      id="form3Example1q"
-                      class="form-control"
-                    />
-                    <label class="form-label" for="form3Example1q">Họ</label>
-                  </div>
-                  
-                  <div data-mdb-input-init class="form-outline mb-4">
-                    <input
-                      v-model="user_name"
-                      type="text"
-                      id="form3Example1q"
-                      class="form-control"
-                    />
-                    <label class="form-label" for="form3Example1q">Tên Đăng nhập</label>
-                  </div>
-
-                  <div data-mdb-input-init class="form-outline mb-4">
-                    <input
-                      v-model="email_user"
-                      type="text"
-                      id="form3Example1q"
-                      class="form-control"
-                    />
-                    <label class="form-label" for="form3Example1q">Địa chỉ email</label>
-                  </div>
-                  
-                  <div data-mdb-input-init class="form-outline mb-4">
-                    <input
-                      v-model="phone_number"
-                      type="text"
-                      id="form3Example1q"
-                      class="form-control"
-                    />
-                    <label class="form-label" for="form3Example1q">Số điện thoại</label>
-                  </div>
-                  
-                  <div data-mdb-input-init class="form-outline mb-4">
-                    <input
-                      v-model="password"
-                      type="password"
-                      id="form3Example1q"
-                      class="form-control"
-                    />
-                    <label class="form-label" for="form3Example1q">Mật khẩu</label>
-                  </div>
-                  
-                  <div data-mdb-input-init class="form-outline mb-4">
-                    <input
-                      v-model="password"
-                      type="password"
-                      id="form3Example1q"
-                      class="form-control"
-                    />
-                    <label class="form-label" for="form3Example1q">Nhập lại mật khẩu</label>
+                  <div class="form-outline mb-4 text-center">
+                    <input v-model="formData.avt" type="text" class="form-control form-control-lg" />
+                    <label class="form-label" for="avt">Nhập URL ảnh đại diện</label>
                   </div>
                   
                   <div class="form-outline mb-4 text-center">
-                    <select v-model="formData.gender_user" id="gender" class="form-control form-control-lg">
+                    <select
+                      v-model="formData.gender_user"
+                      id="gender"
+                      class="form-control form-control-lg"
+                    >
                       <option value="" disabled>Chọn giới tính</option>
                       <option value="male">Nam</option>
                       <option value="female">Nữ</option>
@@ -101,7 +34,10 @@
                     <label class="form-label" for="gender">Giới tính</label>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-lg btn-block"
+                    >
                       Submit
                     </button>
                   </div>
@@ -159,14 +95,37 @@ export default {
   },
   methods: {
     async register() {
+      // Kiểm tra xem trường "avt" đã được điền chưa
+      if (!this.formData.avt) {
+        this.message = "Vui lòng chọn ảnh đại diện.";
+        this.alertClass = "alert-danger";
+        return; // Dừng hàm register nếu trường "avt" không được điền
+      }
+
+      const formData = new FormData();
+      for (const key in this.formData) {
+        if (key === 'avt' && this.formData[key] instanceof File) {
+          const fileReader = new FileReader();
+          fileReader.readAsDataURL(this.formData[key]);
+          fileReader.onload = () => {
+            formData.append(key, fileReader.result);
+          };
+        } else {
+          formData.append(key, this.formData[key]);
+        }
+      }
+
+      // Log formData trước khi gửi
+      console.log("Form data:", formData);
+
       try {
-        const response = await AuthService.register(this.formData);
+        const response = await AuthService.register(formData);
         this.message = "Đăng ký thành công!";
         this.alertClass = "alert-success";
         console.log("Success response data:", response);
 
         // Chuyển hướng đến trang OTP
-        router.push({ name: 'OTP' }); // Thay 'OTPPage' bằng tên của route đến trang OTP của bạn
+        router.push({ name: "OTP" }); // Thay 'OTPPage' bằng tên của route đến trang OTP của bạn
       } catch (error) {
         if (error.response) {
           this.message = `Lỗi: ${error.response.data.message}`;
@@ -220,8 +179,8 @@ export default {
 }
 
 .btn-primary {
-  background-color: #4CAF50;
-  border-color: #4CAF50;
+  background-color: #4caf50;
+  border-color: #4caf50;
 }
 
 .btn-primary:hover {

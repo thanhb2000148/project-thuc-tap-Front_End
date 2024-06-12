@@ -11,7 +11,7 @@
                 <input
                   type="search"
                   class="form-control p-3"
-                  placeholder="keywords"
+                  placeholder=""
                   aria-describedby="search-icon-1"
                 />
                 <span id="search-icon-1" class="input-group-text p-3"
@@ -22,7 +22,7 @@
             <div class="col-6"></div>
             <div class="col-xl-3">
               <div
-                class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4"
+                class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4"  
               >
                 <label for="fruits">Default Sorting:</label>
                 <select
@@ -85,7 +85,7 @@
                           >
                           <span>(5)</span>
                         </div>
-                      </li> --> 
+                      </li> -->
                     </ul>
                   </div>
                 </div>
@@ -295,7 +295,7 @@
                       ><div class="fruite-img">
                         <img
                           :src="item.LIST_FILE_ATTACHMENT_DEFAULT[0].FILE_URL"
-                          class="img-fluid w-100 rounded-top"
+                          class="img-fluid rounded-top"
                           alt=""
                         /></div
                     ></router-link>
@@ -303,7 +303,7 @@
                       class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                       style="top: 10px; left: 10px"
                     >
-                      Fruits
+                      New
                     </div>
                     <div
                       class="p-4 border border-secondary border-top-0 rounded-bottom"
@@ -322,10 +322,11 @@
                           }}
                         </p>
                         <a
+                          @click="addCartNonKV(item._id)"
                           href="#"
                           class="btn border border-secondary rounded-pill px-3 text-primary"
                           ><i class="fa fa-shopping-bag me-2 text-primary"></i>
-                          Add to cart</a
+                          Thêm Vào Giỏ Hàng</a
                         >
                       </div>
                     </div>
@@ -349,6 +350,7 @@ import PaginationLayout from "@/components/User/layout/PaginationLayout.vue";
 
 import productService from "@/services/product.service";
 import PriceService from "@/services/price.service";
+import cartService from "@/services/cart.service";
 
 export default {
   name: "ShopView",
@@ -361,6 +363,7 @@ export default {
     return {
       products: [],
       prices: [],
+      cart: [],
     };
   },
 
@@ -370,6 +373,8 @@ export default {
       console.log("Mảng products:", this.products);
       await this.getPriceProduct();
       console.log("Mãng prices:", this.prices);
+      await this.addCartNonKV();
+      console.log("trả về Cart", this.cart);
     } catch (error) {
       console.error("Error during component initialization:", error);
     }
@@ -418,8 +423,33 @@ export default {
         return "Đang cập nhật giá";
       }
     },
+    addCartNonKV(productId) {
+      try {
+        const response = cartService.addCart(productId);
+        if (response && response.data) {
+          console.log("Thêm sản phẩm vào giỏ thành công");
+        } else {
+          console.error("Unexpected response structure:", response);
+        }
+      } catch (error) {
+        console.error("lỗi khi thêm sp vào giỏ :", error);
+      }
+    },
   },
 };
 </script>
 
-<style></style>
+<style>
+.fruite-img {
+  overflow: hidden; 
+  width: 280px; 
+  height: 350px; 
+  border-radius: 10px; 
+}
+
+.fruite-img img {
+  width: 100%; /* Đảm bảo rằng hình ảnh luôn đầy đủ chiều rộng của khung */
+  height: 100%; /* Đảm bảo rằng hình ảnh luôn đầy đủ chiều cao của khung */
+  object-fit: cover; /* Hiển thị hình ảnh mà không biến dạng tỷ lệ */
+}
+</style>
