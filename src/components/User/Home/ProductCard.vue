@@ -13,7 +13,9 @@
       <h4>{{ product.NAME_PRODUCT }}</h4>
       <p>{{ product.SHORT_DESC }}</p>
       <div class="d-flex justify-content-between flex-lg-wrap">
-        <p class="text-dark fs-5 fw-bold mb-0">{{ productPrice }} / kg</p>
+        <p class="text-dark fs-5 fw-bold mb-0">
+          {{ getPrice() }}
+        </p>
         <a
           href="#"
           class="btn border border-secondary rounded-pill px-3 text-primary"
@@ -26,10 +28,16 @@
 </template>
 
 <script>
+import PriceService from "../../../services/price.service";
 export default {
   name: "ProductCard",
   props: {
     product: Object,
+  },
+  data() {
+    return {
+      prices: null,
+    };
   },
   computed: {
     productImage() {
@@ -37,6 +45,37 @@ export default {
     },
     productPrice() {
       return this.product.PRICE; // Cập nhật tùy thuộc vào cấu trúc thực tế
+    },
+  },
+  async created() {
+    try {
+      await this.getPriceProduct();
+      console.log("Mãng prices:", this.prices);
+    } catch (error) {
+      console.error("Error during component initialization:", error);
+    }
+  },
+  methods: {
+    async getPriceProduct() {
+      try {
+        const response = await PriceService.getDefaultPrice(this.product._id);
+        if (response && response.data && response.data[0]) {
+          this.prices = response.data[0].PRICE_NUMBER;
+        } else {
+          console.error("Unexpected response structure:", response);
+        }
+      } catch (error) {
+        console.error("lỗi khi lấy giá:", error);
+        throw error; // Re-throw error to be caught by the caller
+      }
+    },
+    getPrice() {
+      const price = this.prices;
+      if (price) {
+        return price;
+      } else {
+        return "Đang cập nhật giá";
+      }
     },
   },
 };
