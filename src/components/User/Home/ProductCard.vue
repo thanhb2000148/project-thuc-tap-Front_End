@@ -14,7 +14,12 @@
       <p>{{ product.SHORT_DESC }}</p>
       <div class="d-flex justify-content-between flex-lg-wrap">
         <p class="text-dark fs-5 fw-bold mb-0">
-          {{ getPrice() }}
+          {{
+            getPrice().toLocaleString("vi-VN", {
+              style: "currency",
+              currency: "VND",
+            })
+          }}
         </p>
         <a
           href="#"
@@ -42,9 +47,6 @@ export default {
   computed: {
     productImage() {
       return this.product.LIST_FILE_ATTACHMENT_DEFAULT[0].FILE_URL; // Cập nhật tùy thuộc vào cấu trúc thực tế
-    },
-    productPrice() {
-      return this.product.PRICE; // Cập nhật tùy thuộc vào cấu trúc thực tế
     },
   },
   async created() {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavBar />
-    <section class="h-100 h-custom" style="background-color: #ffffff;">
+    <section class="h-100 h-custom" style="background-color: #ffffff">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-lg-7 col-xl-5">
@@ -11,16 +11,35 @@
                   Thông Tin Đăng Ký
                 </h3>
                 <form class="px-md-2" @submit.prevent="register">
-                  <div v-for="(field, label) in formFields" :key="label" class="form-outline mb-4 text-center">
-                    <input v-model="formData[label]" type="text" :id="label" class="form-control form-control-lg" />
+                  <div
+                    v-for="(field, label) in formFields"
+                    :key="label"
+                    class="form-outline mb-4 text-center"
+                  >
+                    <input
+                      v-model="formData[label]"
+                      type="text"
+                      :id="label"
+                      class="form-control form-control-lg"
+                    />
                     <label class="form-label" :for="label">{{ field }}</label>
                   </div>
                   <div class="form-outline mb-4 text-center">
-                    <input v-model="formData.avt" type="text" class="form-control form-control-lg" />
-                    <label class="form-label" for="avt">Nhập URL ảnh đại diện</label>
+                    <input
+                      v-model="formData.avt"
+                      type="text"
+                      class="form-control form-control-lg"
+                    />
+                    <label class="form-label" for="avt"
+                      >Nhập URL ảnh đại diện</label
+                    >
                   </div>
                   <div class="form-outline mb-4 text-center">
-                    <select v-model="formData.gender_user" id="gender" class="form-control form-control-lg">
+                    <select
+                      v-model="formData.gender_user"
+                      id="gender"
+                      class="form-control form-control-lg"
+                    >
                       <option value="" disabled>Chọn giới tính</option>
                       <option value="male">Nam</option>
                       <option value="female">Nữ</option>
@@ -29,7 +48,10 @@
                     <label class="form-label" for="gender">Giới tính</label>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-lg btn-block"
+                    >
                       Submit
                     </button>
                   </div>
@@ -100,7 +122,7 @@ export default {
 
       const formData = new FormData();
       for (const key in this.formData) {
-        if (key === 'avt' && this.formData[key] instanceof File) {
+        if (key === "avt" && this.formData[key] instanceof File) {
           const fileReader = new FileReader();
           fileReader.readAsDataURL(this.formData[key]);
           fileReader.onload = () => {
@@ -121,7 +143,7 @@ export default {
         console.log("Success response data:", response);
 
         // Chuyển hướng đến trang OTP
-        router.push({ name: 'OTP' }); // Thay 'OTPPage' bằng tên của route đến trang OTP của bạn
+        router.push({ name: "OTP" }); // Thay 'OTPPage' bằng tên của route đến trang OTP của bạn
       } catch (error) {
         if (error.response) {
           this.message = `Lỗi: ${error.response.data.message}`;
@@ -141,7 +163,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 .alert {
@@ -175,8 +196,8 @@ export default {
 }
 
 .btn-primary {
-  background-color: #4CAF50;
-  border-color: #4CAF50;
+  background-color: #4caf50;
+  border-color: #4caf50;
 }
 
 .btn-primary:hover {

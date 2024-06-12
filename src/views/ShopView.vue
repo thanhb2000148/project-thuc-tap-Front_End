@@ -85,7 +85,7 @@
                           >
                           <span>(5)</span>
                         </div>
-                      </li> --> 
+                      </li> -->
                     </ul>
                   </div>
                 </div>
@@ -322,6 +322,7 @@
                           }}
                         </p>
                         <a
+                          @click="addCartNonKV(item._id)"
                           href="#"
                           class="btn border border-secondary rounded-pill px-3 text-primary"
                           ><i class="fa fa-shopping-bag me-2 text-primary"></i>
@@ -349,6 +350,7 @@ import PaginationLayout from "@/components/User/layout/PaginationLayout.vue";
 
 import productService from "@/services/product.service";
 import PriceService from "@/services/price.service";
+import cartService from "@/services/cart.service";
 
 export default {
   name: "ShopView",
@@ -361,6 +363,7 @@ export default {
     return {
       products: [],
       prices: [],
+      cart: [],
     };
   },
 
@@ -370,6 +373,8 @@ export default {
       console.log("Mảng products:", this.products);
       await this.getPriceProduct();
       console.log("Mãng prices:", this.prices);
+      await this.addCartNonKV();
+      console.log("trả về Cart", this.cart);
     } catch (error) {
       console.error("Error during component initialization:", error);
     }
@@ -416,6 +421,18 @@ export default {
         return price;
       } else {
         return "Đang cập nhật giá";
+      }
+    },
+    addCartNonKV(productId) {
+      try {
+        const response = cartService.addCart(productId);
+        if (response && response.data) {
+          console.log("Thêm sản phẩm vào giỏ thành công");
+        } else {
+          console.error("Unexpected response structure:", response);
+        }
+      } catch (error) {
+        console.error("lỗi khi thêm sp vào giỏ :", error);
       }
     },
   },
