@@ -73,22 +73,52 @@
         <div class="flex flex-column">
             <!-- Section for Colors -->
             <section class="flex items-center" style="margin-bottom: 24px; align-items: baseline;">
-                <h3 class="From">Màu sắc</h3>
-                <div class="flex items-center Color">
-                    <button class="From2 selection-box-unselected btn-outline-secondary" aria-label="Trắng" aria-disabled="false"  onclick=" selectOption(this)">Trắng</button>
-                    <button class="From2 selection-box-unselected btn-outline-secondary" aria-label="Đen" aria-disabled="false"  onclick=" selectOption(this)">Đen</button>
-                    <button class="From2 selection-box-unselected btn-outline-secondary" aria-label="Xanh Dương" aria-disabled="false"  onclick=" selectOption(this)">Xanh Dương</button>
-                </div>
+              <h3 class="From">Màu sắc</h3>
+              <div class="flex items-center colors">
+                <button
+                  class="From2 selection-box-unselected  btn-outline-success"
+                  aria-label="Trắng"
+                  @click="selectColor('Trắng')"
+                  :class="{ 'selection-box-selected': selectedColor === 'Trắng' }"
+                >Trắng</button>
+                <button
+                  class="From2 selection-box-unselected  btn-outline-success"
+                  aria-label="Đen"
+                  @click="selectColor('Đen')"
+                  :class="{ 'selection-box-selected': selectedColor === 'Đen' }"
+                >Đen</button>
+                <button
+                  class="From2 selection-box-unselected  btn-outline-success"
+                  aria-label="Xanh Dương"
+                  @click="selectColor('Xanh Dương')"
+                  :class="{ 'selection-box-selected': selectedColor === 'Xanh Dương' }"
+                >Xanh Dương</button>
+              </div>
             </section>
             <!-- Section for Sizes -->
             <section class="flex items-center" style="margin-bottom: 24px; align-items: baseline;">
-                <h3 class="From">Kích cỡ</h3>
-                <div class="flex items-center Color">
-                    <button class="From2 selection-box-unselected btn-outline-success" aria-label="S" aria-disabled="false" onclick=" selectOption(this)">S</button>
-                    <button class="From2 selection-box-unselected btn-outline-success" aria-label="M" aria-disabled="false" onclick=" selectOption(this)">M</button>
-                    <button class="From2 selection-box-unselected btn-outline-success" aria-label="L" aria-disabled="false" onclick=" selectOption(this)">L</button>
-                </div>
-            </section>
+  <h3 class="From">Kích cỡ</h3>
+    <div class="flex items-center sizes">
+        <button
+          class="From2 selection-box-unselected btn-outline-success"
+          aria-label="S"
+          @click="selectSize('S')"
+          :class="{ 'selection-box-selected': selectedSize === 'S' }"
+        >S</button>
+        <button
+          class="From2 selection-box-unselected btn-outline-success"
+          aria-label="M"
+          @click="selectSize('M')"
+          :class="{ 'selection-box-selected': selectedSize === 'M' }"
+        >M</button>
+        <button
+          class="From2 selection-box-unselected btn-outline-success"
+          aria-label="L"
+          @click="selectSize('L')"
+          :class="{ 'selection-box-selected': selectedSize === 'L' }"
+        >L</button>
+      </div>
+    </section>
             <!-- Section for Quantity -->
             <!-- <section class="flex items-center OaFP0p">
                 <h3 class="From">Số lượng</h3>
@@ -124,7 +154,7 @@
                     aria-controls="nav-about"
                     aria-selected="true"
                   >
-                    Description
+                    Chi Tiết Sản Phẩm
                   </button>
                   <button
                     class="nav-link border-white border-bottom-0"
@@ -136,7 +166,7 @@
                     aria-controls="nav-mission"
                     aria-selected="false"
                   >
-                    Reviews
+                    Đánh Giá Sản Phẩm
                   </button>
                 </div>
               </nav>
@@ -151,63 +181,63 @@
                     {{ products.DESC_PRODUCT }}
                   </p>
 
-                  <div class="px-2">
+                  <!-- <div class="px-2">
                     <div class="row g-4">
                       <div class="col-6">
                         <div
                           class="row bg-light align-items-center text-center justify-content-center py-2"
                         >
                           <div class="col-6">
-                            <p class="mb-0">Weight</p>
+                            <p class="mb-0">Chiều Cao</p>
                           </div>
                           <div class="col-6">
-                            <p class="mb-0">1 kg</p>
-                          </div>
-                        </div>
-                        <div
-                          class="row text-center align-items-center justify-content-center py-2"
-                        >
-                          <div class="col-6">
-                            <p class="mb-0">Country of Origin</p>
-                          </div>
-                          <div class="col-6">
-                            <p class="mb-0">Agro Farm</p>
-                          </div>
-                        </div>
-                        <div
-                          class="row bg-light text-center align-items-center justify-content-center py-2"
-                        >
-                          <div class="col-6">
-                            <p class="mb-0">Quality</p>
-                          </div>
-                          <div class="col-6">
-                            <p class="mb-0">Organic</p>
+                            <p class="mb-0">1m6-1m7</p>
                           </div>
                         </div>
                         <div
                           class="row text-center align-items-center justify-content-center py-2"
                         >
                           <div class="col-6">
-                            <p class="mb-0">Сheck</p>
+                            <p class="mb-0">Cân Nặng</p>
                           </div>
                           <div class="col-6">
-                            <p class="mb-0">Healthy</p>
+                            <p class="mb-0">50-70kg</p>
                           </div>
                         </div>
                         <div
                           class="row bg-light text-center align-items-center justify-content-center py-2"
                         >
                           <div class="col-6">
-                            <p class="mb-0">Min Weight</p>
+                            <p class="mb-0">Số Lượng</p>
                           </div>
                           <div class="col-6">
-                            <p class="mb-0">250 Kg</p>
+                            <p class="mb-0">100</p>
+                          </div>
+                        </div>
+                        <div
+                          class="row text-center align-items-center justify-content-center py-2"
+                        >
+                          <div class="col-6">
+                            <p class="mb-0">Xuất Xứ</p>
+                          </div>
+                          <div class="col-6">
+                            <p class="mb-0">Mỹ Tho</p>
+                          </div>
+                        </div>
+                        <div
+                          class="row bg-light text-center align-items-center justify-content-center py-2"
+                        >
+                          <div class="col-6">
+                            <p class="mb-0">Chất Liệu</p>
+                          </div>
+                          <div class="col-6">
+                            <p class="mb-0">Da cá sấu</p>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
+                  </div> -->
+                </div> 
                 <div
                   class="tab-pane"
                   id="nav-mission"
@@ -571,6 +601,8 @@ export default {
     return {
       products: [],
       price: [],
+      selectedColor: null,
+      selectedSize: null,
     };
   },
   async created() {
@@ -595,6 +627,7 @@ export default {
       } catch (error) {
         console.error(error);
       }
+    
     },
     async getPriceProduct() {
       try {
@@ -611,18 +644,52 @@ export default {
         throw error; // Re-throw error to be caught by the caller
       }
     },
+    selectColor(color) {
+      this.selectedColor = color;
+    },
+    selectSize(size) {
+      this.selectedSize = size;
+    },
   },
 };
 
-// function selectOption(button) {
-//         // Xóa lớp CSS được chọn từ tất cả các nút cùng một nhóm
-//         var buttons = button.parentNode.querySelectorAll('button');
-//         buttons.forEach(function(btn) {
-//             btn.classList.remove('selected');
-//         });
-//         // Thêm lớp CSS được chọn vào nút được nhấn
-//         button.classList.add('selected');
-// }
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM fully loaded and parsed');
+    const colorButtons = document.querySelectorAll('.colors button');
+    const sizeButtons = document.querySelectorAll('.sizes button');
+    let selectedColor = null;
+    let selectedSize = null;
+
+    colorButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Xóa lớp 'selection-box-selected' khỏi tất cả các nút màu sắc
+            colorButtons.forEach(btn => btn.classList.remove('selection-box-selected'));
+            // Thêm lớp 'selection-box-selected' vào nút được nhấn
+            button.classList.add('selection-box-selected');
+            // Lưu lại màu đã chọn
+            selectedColor = button;
+        });
+    });
+
+    sizeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Xóa lớp 'selection-box-selected' khỏi tất cả các nút kích cỡ
+            sizeButtons.forEach(btn => btn.classList.remove('selection-box-selected'));
+            // Thêm lớp 'selection-box-selected' vào nút được nhấn
+            button.classList.add('selection-box-selected');
+            // Lưu lại kích cỡ đã chọn
+            selectedSize = button;
+        });
+    });
+
+    // Kiểm tra và giữ lại lựa chọn khi chuyển đổi giữa màu sắc và kích cỡ
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('click', () => {
+            if (selectedColor) selectedColor.classList.add('selection-box-selected');
+            if (selectedSize) selectedSize.classList.add('selection-box-selected');
+        });
+    });
+});
 
 </script>
 
@@ -660,9 +727,13 @@ body {
     font-weight: bold;
 }
 
-.Color {
+.colors {
     gap: 8px;
 }
+.sizes {
+    gap: 8px;
+}
+
 
 .From2 {
     padding: 8px 16px;
@@ -706,10 +777,9 @@ body {
 
 
 /* CSS code */
-.selected {
-        background-color: #007bff; /* Màu nền được chọn */
-        color: #fff; /* Màu văn bản được chọn */
-    }
-
+.selection-box-selected {
+    border: 2px solid blue;
+    background-color: rgb(247, 243, 242);
+}
 
 </style>

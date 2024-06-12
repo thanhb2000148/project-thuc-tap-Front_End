@@ -29,7 +29,7 @@
                 <p class="mb-0 mt-4">Big Banana</p>
               </td>
               <td>
-                <p class="mb-0 mt-4">2.99 $</p>
+                <p class="mb-0 mt-4">Đang cập nhật</p>
               </td>
               <td>
                 <div class="input-group quantity mt-4" style="width: 100px">
@@ -55,7 +55,7 @@
                 </div>
               </td>
               <td>
-                <p class="mb-0 mt-4">2.99 $</p>
+                <p class="mb-0 mt-4">Đang cập nhật $</p>
               </td>
               <td>
                 <button class="btn btn-md rounded-circle bg-light border mt-4">
@@ -78,7 +78,7 @@
                 <p class="mb-0 mt-4">Potatoes</p>
               </td>
               <td>
-                <p class="mb-0 mt-4">2.99 $</p>
+                <p class="mb-0 mt-4">Đang cập nhật $</p>
               </td>
               <td>
                 <div class="input-group quantity mt-4" style="width: 100px">
@@ -104,7 +104,7 @@
                 </div>
               </td>
               <td>
-                <p class="mb-0 mt-4">2.99 $</p>
+                <p class="mb-0 mt-4">Đang cập nhật $</p>
               </td>
               <td>
                 <button class="btn btn-md rounded-circle bg-light border mt-4">
@@ -127,7 +127,7 @@
                 <p class="mb-0 mt-4">Awesome Brocoli</p>
               </td>
               <td>
-                <p class="mb-0 mt-4">2.99 $</p>
+                <p class="mb-0 mt-4">Đang cập nhật $</p>
               </td>
               <td>
                 <div class="input-group quantity mt-4" style="width: 100px">
@@ -153,7 +153,7 @@
                 </div>
               </td>
               <td>
-                <p class="mb-0 mt-4">2.99 $</p>
+                <p class="mb-0 mt-4">Đang cập nhật $</p>
               </td>
               <td>
                 <button class="btn btn-md rounded-circle bg-light border mt-4">
@@ -187,12 +187,12 @@
               </h1>
               <div class="d-flex justify-content-between mb-4">
                 <h5 class="mb-0 me-4">Tổng:</h5>
-                <p class="mb-0">96.0000</p>
+                <p class="mb-0">96.0000đ</p>
               </div>
               <div class="d-flex justify-content-between">
-                <h5 class="mb-0 me-4">Phí vận chuyển</h5>
+                <h5 class="mb-0 me-4">Phí vận chuyển:</h5>
                 <div class="">
-                  <p class="mb-0">An Giang:300k</p>
+                  <p class="mb-0">An Giang:300.00đ</p>
                 </div>
               </div>
               <p class="mb-0 text-end">Vận chuyển đến...</p>
