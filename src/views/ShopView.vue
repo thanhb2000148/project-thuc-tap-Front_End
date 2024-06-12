@@ -11,7 +11,7 @@
                 <input
                   type="search"
                   class="form-control p-3"
-                  placeholder="keywords"
+                  placeholder=""
                   aria-describedby="search-icon-1"
                 />
                 <span id="search-icon-1" class="input-group-text p-3"
@@ -22,7 +22,7 @@
             <div class="col-6"></div>
             <div class="col-xl-3">
               <div
-                class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4"
+                class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4"  
               >
                 <label for="fruits">Default Sorting:</label>
                 <select
@@ -295,7 +295,7 @@
                       ><div class="fruite-img">
                         <img
                           :src="item.LIST_FILE_ATTACHMENT_DEFAULT[0].FILE_URL"
-                          class="img-fluid w-100 rounded-top"
+                          class="img-fluid rounded-top"
                           alt=""
                         /></div
                     ></router-link>
@@ -303,7 +303,7 @@
                       class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                       style="top: 10px; left: 10px"
                     >
-                      Fruits
+                      New
                     </div>
                     <div
                       class="p-4 border border-secondary border-top-0 rounded-bottom"
@@ -325,7 +325,7 @@
                           href="#"
                           class="btn border border-secondary rounded-pill px-3 text-primary"
                           ><i class="fa fa-shopping-bag me-2 text-primary"></i>
-                          Add to cart</a
+                          Thêm Vào Giỏ Hàng</a
                         >
                       </div>
                     </div>
@@ -422,4 +422,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.fruite-img {
+  overflow: hidden; 
+  width: 280px; 
+  height: 350px; 
+  border-radius: 10px; 
+}
+
+.fruite-img img {
+  width: 100%; /* Đảm bảo rằng hình ảnh luôn đầy đủ chiều rộng của khung */
+  height: 100%; /* Đảm bảo rằng hình ảnh luôn đầy đủ chiều cao của khung */
+  object-fit: cover; /* Hiển thị hình ảnh mà không biến dạng tỷ lệ */
+}
+</style>
