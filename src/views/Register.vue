@@ -11,29 +11,15 @@
                   Thông Tin Đăng Ký
                 </h3>
                 <form class="px-md-2" @submit.prevent="register">
-                  <div
-                    v-for="(field, label) in formFields"
-                    :key="label"
-                    class="form-outline mb-4 text-center"
-                  >
-                    <input
-                      v-model="formData[label]"
-                      type="text"
-                      :id="label"
-                      class="form-control form-control-lg"
-                    />
+                  <div v-for="(field, label) in formFields" :key="label" class="form-outline mb-4 text-center">
+                    <input v-model="formData[label]" type="text" :id="label" class="form-control form-control-lg" />
                     <label class="form-label" :for="label">{{ field }}</label>
                   </div>
                   <div class="form-outline mb-4 text-center">
-                    <input
-                      v-model="formData.avt"
-                      type="text"
-                      class="form-control form-control-lg"
-                    />
-                    <label class="form-label" for="avt"
-                      >Nhập URL ảnh đại diện</label
-                    >
+                    <input v-model="formData.avt" type="text" class="form-control form-control-lg" />
+                    <label class="form-label" for="avt">Nhập URL ảnh đại diện</label>
                   </div>
+                  
                   <div class="form-outline mb-4 text-center">
                     <select
                       v-model="formData.gender_user"
@@ -70,7 +56,7 @@
 </template>
 
 <script>
-import router from "@/router"; // Import router từ file router của bạn
+import router from "@/router";
 import AuthService from "@/services/auth.service";
 import AppFooter from "@/components/User/layout/AppFooter.vue";
 import NavBar from "@/components/User/layout/NavBar.vue";
@@ -101,17 +87,13 @@ export default {
         phone_number: "",
         password: "",
         gender_user: "",
-        avt: null,
+        //avt: null,
       },
       message: "",
       alertClass: "",
     };
   },
   methods: {
-    onFileChange(event) {
-      const file = event.target.files[0];
-      this.formData.avt = file;
-    },
     async register() {
       // Kiểm tra xem trường "avt" đã được điền chưa
       if (!this.formData.avt) {
@@ -122,7 +104,7 @@ export default {
 
       const formData = new FormData();
       for (const key in this.formData) {
-        if (key === "avt" && this.formData[key] instanceof File) {
+        if (key === 'avt' && this.formData[key] instanceof File) {
           const fileReader = new FileReader();
           fileReader.readAsDataURL(this.formData[key]);
           fileReader.onload = () => {
@@ -160,6 +142,7 @@ export default {
         }
       }
     },
+    
   },
 };
 </script>
