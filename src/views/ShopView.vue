@@ -442,7 +442,7 @@ export default {
 <style>
 .fruite-img {
   overflow: hidden; 
-  width: 280px; 
+  width: 305px; 
   height: 350px; 
   border-radius: 10px; 
 }
