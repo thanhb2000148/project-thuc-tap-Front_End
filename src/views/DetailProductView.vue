@@ -70,45 +70,44 @@
 
 
       <div class="flex KIoPj6 W5LiQM">
+        <!-- <div  v-if="is_loading ==false">
+           <div>
+          <div>item{{ products.LIST_PRODUCT_METADATA[0].KEY}} end</div>
+        </div>
+        </div> -->
+       
         <div class="flex flex-column">
             <!-- Section for Colors -->
-            <section class="flex items-center" style="margin-bottom: 24px; align-items: baseline"
+            <section v-if="!is_loading" class="flex items-center" style="margin-bottom: 24px; align-items: baseline" 
              > 
-              <h3 class="From">{{products.LIST_PRODUCT_METADATA}}</h3>
-              <div class="flex items-center colors">
+              <h3 class="From">{{products.LIST_PRODUCT_METADATA[0].KEY}}</h3>
+              <div class="flex items-center colors" >
                 <button  
-           
+                  v-for="color in products.LIST_PRODUCT_METADATA[0].VALUE" :key="color"
                   class="From2 selection-box-unselected  btn-outline-success"
-                  aria-label="Trắng"
-                  @click="selectColor('Trắng')"
-                  :class="{ 'selection-box-selected': selectedColor === 'Trắng' }"
-                ></button>
+                  aria-label="color"
+                  @click="selectColor(color)"
+                  :class="{ 'selection-box-selected': selectedColor === color }"
+                   >
+            {{ color }} <!--Hiễn thị các mảng button được lặp-->
+                </button>
               </div>
             </section>
             <!-- Section for Sizes -->
-            <section class="flex items-center" style="margin-bottom: 24px; align-items: baseline;">
-  <h3 class="From">Kích cỡ</h3>
-    <div class="flex items-center sizes">
-        <button
-          class="From2 selection-box-unselected btn-outline-success"
-          aria-label="S"
-          @click="selectSize('S')"
-          :class="{ 'selection-box-selected': selectedSize === 'S' }"
-        >S</button>
-        <button
-          class="From2 selection-box-unselected btn-outline-success"
-          aria-label="M"
-          @click="selectSize('M')"
-          :class="{ 'selection-box-selected': selectedSize === 'M' }"
-        >M</button>
-        <button
-          class="From2 selection-box-unselected btn-outline-success"
-          aria-label="L"
-          @click="selectSize('L')"
-          :class="{ 'selection-box-selected': selectedSize === 'L' }"
-        >L</button>
-      </div>
-    </section>
+            <section v-if="!is_loading" class="flex items-center" style="margin-bottom: 24px; align-items: baseline"> 
+            <h3 class="From">{{products.LIST_PRODUCT_METADATA[1].KEY}}</h3>
+            <div class="flex items-center sizes">
+              <button  
+                v-for="size in products.LIST_PRODUCT_METADATA[1].VALUE" :key="size"
+                class="From2 selection-box-unselected btn-outline-success"
+                aria-label="size"
+                @click="selectSize(size)"
+                :class="{ 'selection-box-selected': selectedSize === size }"
+              >
+                {{ size }}
+              </button>
+            </div>
+          </section>
             <!-- Section for Quantity -->
             <!-- <section class="flex items-center OaFP0p">
                 <h3 class="From">Số lượng</h3>
@@ -589,10 +588,11 @@ export default {
   },
   data() {
     return {
-      products: [],
+      products: {},
       price: [],
       selectedColor: null,
       selectedSize: null,
+      is_loading:true, // chạy loading trước sao đó mới gọi api
     };
   },
   async created() {
@@ -611,6 +611,7 @@ export default {
       try {
         const response = await productService.getById(this.$route.params.id);
         if (response && response.data) {
+          this.is_loading = false
           this.products = response.data;
         } else {
           console.error("Unexpected response structure:", response);
