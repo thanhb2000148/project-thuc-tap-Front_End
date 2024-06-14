@@ -75,7 +75,7 @@
             <section class="flex items-center" style="margin-bottom: 24px; align-items: baseline"
              > 
               <h3 class="From">{{products.LIST_PRODUCT_METADATA}}</h3>
-              <div class="flex items-center colors" >
+              <div class="flex items-center colors">
                 <button  
            
                   class="From2 selection-box-unselected  btn-outline-success"
