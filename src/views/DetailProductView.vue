@@ -69,30 +69,20 @@
               >
 
 
-              <div class="flex KIoPj6 W5LiQM">
+      <div class="flex KIoPj6 W5LiQM">
         <div class="flex flex-column">
             <!-- Section for Colors -->
-            <section class="flex items-center" style="margin-bottom: 24px; align-items: baseline;">
-              <h3 class="From">Màu sắc</h3>
-              <div class="flex items-center colors">
-                <button
+            <section class="flex items-center" style="margin-bottom: 24px; align-items: baseline"
+             > 
+              <h3 class="From">{{products.LIST_PRODUCT_METADATA}}</h3>
+              <div class="flex items-center colors" >
+                <button  
+           
                   class="From2 selection-box-unselected  btn-outline-success"
                   aria-label="Trắng"
                   @click="selectColor('Trắng')"
                   :class="{ 'selection-box-selected': selectedColor === 'Trắng' }"
-                >Trắng</button>
-                <button
-                  class="From2 selection-box-unselected  btn-outline-success"
-                  aria-label="Đen"
-                  @click="selectColor('Đen')"
-                  :class="{ 'selection-box-selected': selectedColor === 'Đen' }"
-                >Đen</button>
-                <button
-                  class="From2 selection-box-unselected  btn-outline-success"
-                  aria-label="Xanh Dương"
-                  @click="selectColor('Xanh Dương')"
-                  :class="{ 'selection-box-selected': selectedColor === 'Xanh Dương' }"
-                >Xanh Dương</button>
+                ></button>
               </div>
             </section>
             <!-- Section for Sizes -->
@@ -608,7 +598,8 @@ export default {
   async created() {
     try {
       await this.getProduct();
-      console.log("Mãng product", this.products);
+      console.log("Mãng product", this.products.LIST_PRODUCT_METADATA
+      );
       await this.getPriceProduct();
       console.log("Mảng price", this.price);
     } catch (error) {
