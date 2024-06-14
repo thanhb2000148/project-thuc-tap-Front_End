@@ -11,6 +11,14 @@ class CartService {
       console.log(error);
     }
   }
+  async getCart() {
+    try {
+      const response = await this.api.get("/?page=1&limit=4");
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new CartService();
