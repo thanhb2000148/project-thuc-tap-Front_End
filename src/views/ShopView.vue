@@ -285,7 +285,7 @@
             <div class="col-lg-9">
               <div class="row g-4 justify-content-center">
                 <div
-                  class="col-md-6 col-lg-6 col-xl-4"
+                  class="col-md-6 col-lg-6 col-xl-4 min-height"
                   v-for="item in products"
                   :key="item._id"
                 >
@@ -299,18 +299,18 @@
                           alt=""
                         /></div
                     ></router-link>
-                    <div
+                    <!-- <div
                       class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                       style="top: 10px; left: 10px"
                     >
                       New
-                    </div>
+                    </div> -->
                     <div
-                      class="p-4 border border-secondary border-top-0 rounded-bottom"
+                      class="p-4 border border-secondary border-top-0 rounded-bottom size-text"
                     >
                       <h4>{{ item.NAME_PRODUCT }}</h4>
                       <p>
-                        {{ item.DESC_PRODUCT }}
+                        {{ item.SHORT_DESC }}
                       </p>
                       <div class="d-flex justify-content-between flex-lg-wrap">
                         <p class="text-dark fs-5 fw-bold mb-0">
@@ -440,16 +440,26 @@ export default {
 </script>
 
 <style>
-.fruite-img {
-  overflow: hidden; 
-  width: 305px; 
-  height: 350px; 
-  border-radius: 10px; 
-}
+  .fruite-img {
+    overflow: hidden; 
+    width: 305px; 
+    height: 350px; 
+    border-radius: 10px; 
+  }
 
-.fruite-img img {
-  width: 100%; /* Đảm bảo rằng hình ảnh luôn đầy đủ chiều rộng của khung */
-  height: 100%; /* Đảm bảo rằng hình ảnh luôn đầy đủ chiều cao của khung */
-  object-fit: cover; /* Hiển thị hình ảnh mà không biến dạng tỷ lệ */
-}
+  .fruite-img img {
+    width: 100%; /* Đảm bảo rằng hình ảnh luôn đầy đủ chiều rộng của khung */
+    height: 100%; /* Đảm bảo rằng hình ảnh luôn đầy đủ chiều cao của khung */
+    object-fit: cover; /* Hiển thị hình ảnh mà không biến dạng tỷ lệ */
+  }
+  .min-height{
+    min-height: 595px;
+    font-size: 1.4rem;
+  }
+  .size-text > h4 {
+    font-size: 1.4rem;
+  }
+  .size-text p{
+    font-size: 1.2rem;
+  }
 </style>
