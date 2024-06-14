@@ -11,34 +11,157 @@
                   Thông Tin Đăng Ký
                 </h3>
                 <form class="px-md-2" @submit.prevent="register">
-                  <div v-for="(field, label) in formFields" :key="label" class="form-outline mb-4 text-center">
-                    <input v-model="formData[label]" type="text" :id="label" class="form-control form-control-lg" />
-                    <label class="form-label" :for="label">{{ field }}</label>
+                  
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div data-mdb-input-init class="form-outline">
+                        <input
+                          type="text"
+                          id="firstName"
+                          class="form-control form-control-lg"
+                          v-model="formData.first_name"
+                          required
+                          pattern="[a-zA-ZÀ-ỹ ]+"
+                          title="Chỉ chấp nhận ký tự chữ cái và dấu (bao gồm cả tiếng Việt)"
+                        />
+                        <label class="form-label" for="firstName">Tên của bạn</label>
+                        <small v-if="!isFirstNameValid" class="text-danger">Tên chỉ chấp nhận chữ cái và dấu (bao gồm cả tiếng Việt).</small>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                      <div data-mdb-input-init class="form-outline">
+                        <input
+                          type="text"
+                          id="lastName"
+                          class="form-control form-control-lg"
+                          v-model="formData.last_name"
+                          required
+                          pattern="[a-zA-ZÀ-ỹ ]+"
+                          title="Chỉ chấp nhận ký tự chữ cái và dấu (bao gồm cả tiếng Việt)"
+                        />
+                        <label class="form-label" for="lastName">Họ</label>
+                        <small v-if="!isLastNameValid" class="text-danger">Họ chỉ chấp nhận chữ cái và dấu (bao gồm cả tiếng Việt).</small>
+                      </div>
+                    </div>
                   </div>
-                  <div class="form-outline mb-4 text-center">
-                    <input v-model="formData.avt" type="text" class="form-control form-control-lg" />
-                    <label class="form-label" for="avt">Nhập URL ảnh đại diện</label>
+
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div data-mdb-input-init class="form-outline">
+                        <input
+                          type="text"
+                          id="middleName"
+                          class="form-control form-control-lg"
+                          v-model="formData.middle_name"
+                          required
+                          pattern="[a-zA-ZÀ-ỹ ]+"
+                          title="Chỉ chấp nhận ký tự chữ cái và dấu (bao gồm cả tiếng Việt)"
+                        />
+                        <label class="form-label" for="middleName">Tên lót</label>
+                        <small v-if="!isMiddleNameValid" class="text-danger">Tên lót chỉ chấp nhận chữ cái và dấu (bao gồm cả tiếng Việt).</small>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                      <div data-mdb-input-init class="form-outline">
+                        <input
+                          type="tel"
+                          id="phoneNumber"
+                          class="form-control form-control-lg"
+                          v-model="formData.phone_number"
+                          required
+                          pattern="[0-9]{10}"
+                          title="Số điện thoại gồm 10 chữ số"
+                        />
+                        <label for="phoneNumber" class="form-label">Số điện thoại</label>
+                        <small v-if="!isPhoneNumberValid" class="text-danger">Số điện thoại là bắt buộc và phải là số, gồm 10 chữ số.</small>
+                      </div>
+                    </div>
                   </div>
                   
-                  <div class="form-outline mb-4 text-center">
-                    <select
-                      v-model="formData.gender_user"
-                      id="gender"
-                      class="form-control form-control-lg"
-                    >
-                      <option value="" disabled>Chọn giới tính</option>
-                      <option value="male">Nam</option>
-                      <option value="female">Nữ</option>
-                      <option value="other">Khác</option>
-                    </select>
-                    <label class="form-label" for="gender">Giới tính</label>
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div data-mdb-input-init class="form-outline">
+                        <input
+                          type="text"
+                          id="userName"
+                          class="form-control form-control-lg"
+                          v-model="formData.user_name"
+                          required
+                        />
+                        <label for="userName" class="form-label">Tên đăng nhập</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                      <div data-mdb-input-init class="form-outline">
+                        <input
+                          type="email"
+                          id="emailAddress"
+                          class="form-control form-control-lg"
+                          v-model="formData.email_user"
+                          required
+                        />
+                        <label class="form-label" for="emailAddress">Địa chỉ Email</label>
+                      </div>
+                    </div>
                   </div>
+  
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div data-mdb-input-init class="form-outline">
+                        <input
+                          type="password"
+                          id="password"
+                          class="form-control form-control-lg"
+                          v-model="formData.password"
+                          required
+                        />
+                        <label class="form-label" for="password">Mật khẩu</label>
+                      </div>
+                    </div>
+  
+                    <div class="col-md-6 mb-4">
+                      <div data-mdb-input-init class="form-outline">
+                        <input
+                          type="password"
+                          id="confirmPassword"
+                          class="form-control form-control-lg"
+                         
+                          required
+                        />
+                        <label class="form-label" for="confirmPassword">Nhập lại mật khẩu</label>
+                        <small v-if="!isPasswordMatch" class="text-danger">Mật khẩu không khớp.</small>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div data-mdb-input-init class="form-outline">
+                        <select
+                          v-model="formData.gender_user"
+                          id="gender"
+                          class="form-control form-control-lg"
+                          required
+                        >
+                          <option value="" disabled>Chọn giới tính</option>
+                          <option value="male">Nam</option>
+                          <option value="female">Nữ</option>
+                          <option value="other">Khác</option>
+                        </select>
+                        <label class="form-label" for="gender">Giới tính</label>
+                      </div>
+                    </div>
+                  </div>
+                  
                   <div class="text-center">
                     <button
                       type="submit"
                       class="btn btn-primary btn-lg btn-block"
                     >
-                      Submit
+                      Đăng ký
                     </button>
                   </div>
                 </form>
@@ -56,28 +179,18 @@
 </template>
 
 <script>
-import router from "@/router";
 import AuthService from "@/services/auth.service";
-import AppFooter from "@/components/User/layout/AppFooter.vue";
 import NavBar from "@/components/User/layout/NavBar.vue";
+import AppFooter from "@/components/User/layout/AppFooter.vue";
 
 export default {
-  name: "registerUser",
+  name: "RegisterUser",
   components: {
-    AppFooter,
     NavBar,
+    AppFooter,
   },
   data() {
     return {
-      formFields: {
-        first_name: "Tên",
-        middle_name: "Tên Đệm",
-        last_name: "Họ",
-        user_name: "Tên Đăng nhập",
-        email_user: "Địa chỉ Email",
-        phone_number: "SDT",
-        password: "Mật khẩu",
-      },
       formData: {
         first_name: "",
         middle_name: "",
@@ -86,63 +199,54 @@ export default {
         email_user: "",
         phone_number: "",
         password: "",
+        //confirm_password: "",
         gender_user: "",
-        //avt: null,
       },
       message: "",
       alertClass: "",
+      isFirstNameValid: true,
+      isLastNameValid: true,
+      isMiddleNameValid: true,
+      isPhoneNumberValid: true,
+      isPasswordMatch: true,
     };
   },
   methods: {
     async register() {
-      // Kiểm tra xem trường "avt" đã được điền chưa
-      if (!this.formData.avt) {
-        this.message = "Vui lòng chọn ảnh đại diện.";
-        this.alertClass = "alert-danger";
-        return; // Dừng hàm register nếu trường "avt" không được điền
+      if (!this.isFirstNameValid || !this.isLastNameValid || !this.isMiddleNameValid || !this.isPhoneNumberValid || !this.isPasswordMatch) {
+        return;
       }
-
-      const formData = new FormData();
-      for (const key in this.formData) {
-        if (key === 'avt' && this.formData[key] instanceof File) {
-          const fileReader = new FileReader();
-          fileReader.readAsDataURL(this.formData[key]);
-          fileReader.onload = () => {
-            formData.append(key, fileReader.result);
-          };
-        } else {
-          formData.append(key, this.formData[key]);
-        }
-      }
-
-      // Log formData trước khi gửi
-      console.log("Form data:", formData);
 
       try {
-        const response = await AuthService.register(formData);
+        const response = await AuthService.register(this.formData);
         this.message = "Đăng ký thành công!";
         this.alertClass = "alert-success";
-        console.log("Success response data:", response);
-
-        // Chuyển hướng đến trang OTP
-        router.push({ name: "OTP" }); // Thay 'OTPPage' bằng tên của route đến trang OTP của bạn
+        console.log("Registration response:", response);
+        // Tùy chọn redirect sang trang khác sau khi đăng ký thành công
+         this.$router.push({ name: "OTP" });
       } catch (error) {
-        if (error.response) {
-          this.message = `Lỗi: ${error.response.data.message}`;
-          this.alertClass = "alert-danger";
-          console.error("Error response data:", error.response.data); // Debugging line
-        } else if (error.request) {
-          this.message = "Không nhận được phản hồi từ server.";
-          this.alertClass = "alert-warning";
-          console.error("Error request:", error.request); // Debugging line
-        } else {
-          this.message = `Lỗi: ${error.message}`;
-          this.alertClass = "alert-danger";
-          console.error("Error message:", error.message); // Debugging line
-        }
+        this.message = `Lỗi: ${error.message}`;
+        this.alertClass = "alert-danger";
+        console.error("Registration error:", error);
       }
     },
-    
+  },
+  watch: {
+    'formData.first_name'(newVal) {
+      this.isFirstNameValid = /^[a-zA-ZÀ-ỹ]+$/.test(newVal.trim());
+    },
+    'formData.last_name'(newVal) {
+      this.isLastNameValid = /^[a-zA-ZÀ-ỹ]+$/.test(newVal.trim());
+    },
+    'formData.middle_name'(newVal) {
+      this.isMiddleNameValid = /^[a-zA-ZÀ-ỹ]+$/.test(newVal.trim());
+    },
+    'formData.phone_number'(newVal) {
+      this.isPhoneNumberValid = /^\d{10}$/.test(newVal.trim());
+    },
+    'formData.confirm_password'(newVal) {
+      this.isPasswordMatch = newVal === this.formData.password;
+    }
   },
 };
 </script>
