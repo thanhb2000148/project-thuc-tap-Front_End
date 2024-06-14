@@ -11,16 +11,18 @@ class AuthService {
       return response.data;
     } catch (error) {
       this.handleError(error);
+      throw error; // Rethrow lỗi để cho phép xử lý lỗi ở phía gọi hàm
     }
   }
 
   async login(user) {
     try {
       const response = await this.api.post("/login", user);
-      console.log("Login response data:", response.data); // Thêm logging ở đây
+      console.log("Login response data:", response.data); // Thêm logging ở đây nếu cần thiết
       return response;
     } catch (error) {
       this.handleError(error);
+      throw error; // Rethrow lỗi để cho phép xử lý lỗi ở phía gọi hàm
     }
   }
 
@@ -30,20 +32,21 @@ class AuthService {
       return response.data;
     } catch (error) {
       this.handleError(error);
+      throw error; // Rethrow lỗi để cho phép xử lý lỗi ở phía gọi hàm
     }
   }
 
   handleError(error) {
     if (error.response) {
-      // Máy chủ đã phản hồi với trạng thái khác 200
+      // Lỗi phản hồi từ server (ví dụ: lỗi 400, 500, ...)
       console.error("Response error:", error.response.data);
       console.error("Response status:", error.response.status);
       console.error("Response headers:", error.response.headers);
     } else if (error.request) {
-      // Yêu cầu đã được thực hiện nhưng không có phản hồi
+      // Yêu cầu đã gửi đi nhưng không có phản hồi từ server
       console.error("Request error:", error.request);
     } else {
-      // Đã xảy ra lỗi khi thiết lập yêu cầu
+      // Lỗi xảy ra khi thiết lập yêu cầu (ví dụ: lỗi mạng)
       console.error("Error message:", error.message);
     }
     console.error("Config:", error.config);
