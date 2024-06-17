@@ -1,15 +1,15 @@
 import createApiClient from "./api.service";
-class PaymentService {
-  constructor(baseUrl = "/api/v1/payment") {
+class OrderService {
+  constructor(baseUrl = "/api/v1/order") {
     this.api = createApiClient(baseUrl);
   }
-  async paymentCOD() {
+  async addOrder() {
     try {
-      const response = await this.api.post("/cod");
+      const response = await this.api.post("/");
       return response.data;
     } catch (error) {
       console.log(error);
     }
   }
 }
-export default new PaymentService();
+export default new OrderService();
