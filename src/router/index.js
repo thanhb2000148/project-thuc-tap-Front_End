@@ -59,8 +59,7 @@ const routes = [
   {
     path: "/otp",
     name: "OTP",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/OTP.vue"),
+    component: () => import(/* webpackChunkName: "about" */ "../views/OTP.vue"),
   },
 
   {
@@ -81,6 +80,18 @@ const routes = [
     name: "UserDetail",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/DetailProductView.vue"),
+  },
+  {
+    path: "/checkout/thanks",
+    name: "ThankPayment",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/CompletePayment.vue"),
+  },
+  {
+    path: "/checkout/paymentMethods",
+    name: "ThankPayment",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/paymentMethod.vue"),
   },
 ];
 
