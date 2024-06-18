@@ -11,5 +11,13 @@ class PaymentService {
       console.log(error);
     }
   }
+  async paymentMOMO() {
+    try {
+      const response = await this.api.post("/");
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 export default new PaymentService();

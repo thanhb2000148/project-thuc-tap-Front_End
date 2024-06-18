@@ -82,14 +82,14 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/DetailProductView.vue"),
   },
   {
-    path: "/checkout/thanks",
+    path: "/thanks",
     name: "ThankPayment",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/CompletePayment.vue"),
   },
   {
     path: "/checkout/paymentMethods",
-    name: "ThankPayment",
+    name: "paymentMethod",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/paymentMethod.vue"),
   },
