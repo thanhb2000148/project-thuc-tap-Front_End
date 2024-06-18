@@ -3,60 +3,24 @@
   <SinglePageHeader />
   <div class="container-fluid py-5">
     <div class="container py-5">
-      <h1 class="mb-4">Billing details</h1>
+      <h1 class="mb-4">Phương thức thanh toán</h1>
       <form action="#">
         <div class="row g-5">
           <div class="col-md-12 col-lg-6 col-xl-7">
-            <div class="row">
-              <div class="col-md-12 col-lg-6">
-                <div class="form-item w-100">
-                  <label class="form-label my-3">First Name<sup>*</sup></label>
-                  <input type="text" class="form-control" />
-                </div>
-              </div>
-              <div class="col-md-12 col-lg-6">
-                <div class="form-item w-100">
-                  <label class="form-label my-3">Last Name<sup>*</sup></label>
-                  <input type="text" class="form-control" />
-                </div>
-              </div>
-            </div>
-
-            <div class="form-check my-3">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                id="Account-1"
-                name="Accounts"
-                value="Accounts"
-              />
-              <label class="form-check-label" for="Account-1"
-                >Create an account?</label
-              >
-            </div>
-            <hr />
-            <div class="form-check my-3">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="Address-1"
-                name="Address"
-                value="Address"
-              />
-              <label class="form-check-label" for="Address-1"
-                >Ship to a different address?</label
-              >
-            </div>
-            <div class="form-item">
-              <textarea
-                name="text"
-                class="form-control"
-                spellcheck="false"
-                cols="30"
-                rows="11"
-                placeholder="Oreder Notes (Optional)"
-              ></textarea>
-            </div>
+            <button
+              @click="paymentCOD()"
+              type="button"
+              class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary my-3"
+            >
+              Thanh toán tại nhà
+            </button>
+            <button
+              @click="paymentMomo()"
+              type="button"
+              class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary my-3"
+            >
+              Thanh toán qua Momo
+            </button>
           </div>
           <div class="col-md-12 col-lg-6 col-xl-5">
             <div class="table-responsive">
@@ -128,22 +92,7 @@
 
             <div
               class="row g-4 text-center align-items-center justify-content-center pt-4"
-            >
-              <button
-                @click="addOrder"
-                type="button"
-                class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary"
-              >
-                Thanh toán tại nhà
-              </button>
-              <button
-                @click="addOrder"
-                type="button"
-                class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary"
-              >
-                Thanh toán qua Momo
-              </button>
-            </div>
+            ></div>
           </div>
         </div>
       </form>
@@ -159,6 +108,7 @@ import productService from "@/services/product.service";
 import NavBar from "@/components/User/layout/NavBar.vue";
 import AppFooter from "@/components/User/layout/AppFooter.vue";
 import SinglePageHeader from "../components/User/checkout/SinglePageHeader.vue";
+import paymentService from "@/services/payment.service";
 export default {
   name: "paymentMethod",
   components: {
@@ -223,6 +173,32 @@ export default {
     },
     async addOrder() {
       await orderService.addOrder();
+    },
+    async paymentCOD() {
+      const response = await paymentService.paymentCOD();
+      console.log(response);
+      if (response && response.success) {
+        this.$router.push("/thanks");
+      }
+    },
+    async paymentMomo() {
+      try {
+        const response = await paymentService.paymentMOMO();
+        console.log(response);
+
+        if (response && response.success) {
+          // Lấy đường dẫn thanh toán từ response
+          const payUrl = response.data.payUrl;
+
+          // Chuyển hướng người dùng tới trang thanh toán
+          window.location.href = payUrl;
+        } else {
+          // Xử lý khi không thành công (nếu cần)
+        }
+      } catch (error) {
+        console.error("Lỗi khi thanh toán qua MOMO:", error);
+        // Xử lý lỗi (nếu cần)
+      }
     },
   },
 };
