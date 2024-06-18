@@ -8,7 +8,7 @@ class CartService {
       const response = await this.api.post(`/${id}`);
       return response.data;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
   async getCart() {
@@ -16,7 +16,15 @@ class CartService {
       const response = await this.api.get("/?page=1&limit=4");
       return response.data;
     } catch (error) {
-      console.log(error);
+      console.error(error);
+    }
+  }
+  async updateCart(payload) {
+    try {
+      const response = await this.api.put("/", payload);
+      return response.data;
+    } catch (error) {
+      console.error(error);
     }
   }
 }
