@@ -3,64 +3,23 @@
   <SinglePageHeader />
   <div class="container-fluid py-5">
     <div class="container py-5">
-      <h1 class="mb-4">Thông tin giao hàng</h1>
+      <h1 class="mb-4">Phương thức thanh toán</h1>
       <form action="#">
         <div class="row g-5">
           <div class="col-md-12 col-lg-6 col-xl-7">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="row">
-                  <div class="col-md-2 text-center p-0">
-                    <div class="avatar">
-                      <img src="../../public/img/avatar.jpg" alt="" />
-                    </div>
-                    <div v-if="user && user.USER_ID">
-                      {{ user.USER_NAME }}
-                    </div>
-                    <div v-else>Loading...</div>
-                  </div>
-                  <div class="col-md-2 p-0 r mt-4">
-                    <div v-if="user && user.USER_ID">
-                      {{ user.USER_ID.EMAIL_USER }}
-                    </div>
-                    <div v-else>Loading...</div>
-                    <div class="logout">Đăng xuất</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-control bg-white my-3">
-                  <select name="" id="" class="w-100 border-0 bg-white">
-                    <option value="">Địa chỉ đã lưu</option>
-                    <option value="" selected>39/1 đường 3/2 xuân khánh</option>
-                  </select>
-                </div>
-                <div class="col-md-12 col-lg-6 w-100">
-                  <div class="form-item">
-                    <label class="form-label my-3">Last Name<sup>*</sup></label>
-                    <input type="text" class="form-control" />
-                  </div>
-                </div>
-                <div class="col-md-12 col-lg-6 w-100">
-                  <div class="form-item">
-                    <label class="form-label my-3">Last Name<sup>*</sup></label>
-                    <input type="text" class="form-control" />
-                  </div>
-                </div>
-                <div class="col-md-12 col-lg-6 w-100">
-                  <div class="form-item">
-                    <label class="form-label my-3">Last Name<sup>*</sup></label>
-                    <input type="text" class="form-control" />
-                  </div>
-                </div>
-              </div>
-            </div>
             <button
-              @click="addOrder()"
+              @click="paymentCOD()"
               type="button"
-              class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary my-5"
+              class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary my-3"
             >
-              Tiến hành thanh toán
+              Thanh toán tại nhà
+            </button>
+            <button
+              @click="paymentMomo()"
+              type="button"
+              class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary my-3"
+            >
+              Thanh toán qua Momo
             </button>
           </div>
           <div class="col-md-12 col-lg-6 col-xl-5">
@@ -149,10 +108,9 @@ import productService from "@/services/product.service";
 import NavBar from "@/components/User/layout/NavBar.vue";
 import AppFooter from "@/components/User/layout/AppFooter.vue";
 import SinglePageHeader from "../components/User/checkout/SinglePageHeader.vue";
-import checkLogin from "../utils/checkLogin";
-import userService from "@/services/user.service";
+import paymentService from "@/services/payment.service";
 export default {
-  name: "CheckOutView",
+  name: "paymentMethod",
   components: {
     NavBar,
     AppFooter,
@@ -160,19 +118,13 @@ export default {
   },
   data() {
     return {
-      cart: [],
-      user: [],
+      cart: [], // Khởi tạo mảng giỏ hàng
     };
   },
   async created() {
-    if (checkLogin) {
-      await this.getCart();
-      await this.getUser();
-      await this.populateProducts();
-      console.log("Mãng user", this.user);
-    } else {
-      this.$router.push("/login");
-    }
+    await this.getCart(); // Lấy dữ liệu giỏ hàng
+    await this.populateProducts(); // Lấy chi tiết sản phẩm cho từng mục trong giỏ hàng
+    console.log("mãng product");
   },
   methods: {
     async getCart() {
@@ -220,23 +172,32 @@ export default {
       }
     },
     async addOrder() {
-      try {
-        const response = await orderService.addOrder();
-        if (response && response.success) {
-          this.$router.push("/checkout/paymentMethods");
-        }
-      } catch (error) {
-        console.error(error);
+      await orderService.addOrder();
+    },
+    async paymentCOD() {
+      const response = await paymentService.paymentCOD();
+      console.log(response);
+      if (response && response.success) {
+        this.$router.push("/thanks");
       }
     },
-    async getUser() {
+    async paymentMomo() {
       try {
-        const response = await userService.getUserLogin();
-        if (response && response.data) {
-          this.user = response.data;
+        const response = await paymentService.paymentMOMO();
+        console.log(response);
+
+        if (response && response.success) {
+          // Lấy đường dẫn thanh toán từ response
+          const payUrl = response.data.payUrl;
+
+          // Chuyển hướng người dùng tới trang thanh toán
+          window.location.href = payUrl;
+        } else {
+          // Xử lý khi không thành công (nếu cần)
         }
       } catch (error) {
-        console.error(error);
+        console.error("Lỗi khi thanh toán qua MOMO:", error);
+        // Xử lý lỗi (nếu cần)
       }
     },
   },
