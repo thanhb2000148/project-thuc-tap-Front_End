@@ -19,6 +19,16 @@ class CartService {
       console.log(error);
     }
   }
+  async addToCart(id, payload) {
+    try {
+      console.log(payload)
+      const response = await this.api.post(`/${id}`, payload);
+      return response.data;
+    } catch (error) {
+      console.error("Error adding to cart with key-value:", error);
+      throw error;
+    }
+  }
 }
 
 export default new CartService();

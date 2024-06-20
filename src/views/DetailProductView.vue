@@ -63,19 +63,18 @@
                 </div>
               </div>
               <a
+                @click="addToCartClick(products.ID)"
                 href="#"
                 class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"
-                ><i class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ hàng</a
+                ><i class="fa fa-shopping-bag me-2 text-primary"></i>
+                Thêm vào giỏ hàng</a
               >
-
-
-      <div class="flex KIoPj6 W5LiQM">
+      <div class="flex KIoPj6 W5LiQM">  
         <!-- <div  v-if="is_loading ==false">
            <div>
           <div>item{{ products.LIST_PRODUCT_METADATA[0].KEY}} end</div>
         </div>
         </div> -->
-       
         <div class="flex flex-column">
             <!-- Section for Colors -->
             <section v-if="!is_loading" class="flex items-center" style="margin-bottom: 24px; align-items: baseline" 
@@ -580,6 +579,7 @@ import productService from "@/services/product.service";
 import PriceService from "@/services/price.service";
 import NavBar from "@/components/User/layout/NavBar.vue";
 import AppFooter from "@/components/User/layout/AppFooter.vue";
+import cartService from "@/services/cart.service";
 export default {
   name: "UserDetail",
   components: {
@@ -590,18 +590,20 @@ export default {
     return {
       products: {},
       price: [],
+      cart: [],
       selectedColor: null,
       selectedSize: null,
-      is_loading:true, // chạy loading trước sao đó mới gọi api
+      is_loading: true,  // chạy loading trước sao đó mới gọi api
     };
   },
   async created() {
     try {
       await this.getProduct();
-      console.log("Mãng product", this.products.LIST_PRODUCT_METADATA
-      );
+      console.log("Mãng product", this.products);
       await this.getPriceProduct();
-      console.log("Mảng price", this.price);
+      console.log("Mảng price", this.price.LIST_PRICE);
+      // await this.addToCartClick();
+      // console.log("Trả về giỏ hàng", this.cart);
     } catch (error) {
       console.error(error);
     }
@@ -619,7 +621,6 @@ export default {
       } catch (error) {
         console.error(error);
       }
-    
     },
     async getPriceProduct() {
       try {
@@ -634,6 +635,31 @@ export default {
       } catch (error) {
         console.error("lỗi khi lấy giá:", error);
         throw error; // Re-throw error to be caught by the caller
+      }
+    },
+
+    async addToCartClick() {
+      try {
+        const productId = this.$route.params.id;
+        // console.log("selectedColor:", this.selectedColor);
+        // console.log("selectedSize:", this.selectedSize);
+        const colorKey = this.products.LIST_PRODUCT_METADATA[0].KEY;
+        const sizeKey = this.products.LIST_PRODUCT_METADATA[1].KEY;
+        const selectedColorValue = this.selectedColor;
+        const selectedSizeValue = this.selectedSize;
+        const payload = {
+          key: [colorKey, sizeKey],
+          value:[ selectedColorValue, selectedSizeValue]
+        };
+        const response = await cartService.addToCart(productId,payload);
+        if (response && response.data) {  
+          console.log("Đã thêm sản phẩm vào giỏ hàng:", response.data);
+            // console.log(`${colorKey}:${selectedColorValue}, ${sizeKey}:${selectedSizeValue}`);
+        } else {
+          console.error("Lỗi khi thêm vào giỏ hàng:", response);
+        }
+      } catch (error) {
+        console.error("Lỗi khi thêm vào giỏ hàng:", error);
       }
     },
     selectColor(color) {
@@ -673,7 +699,6 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedSize = button;
         });
     });
-
     // Kiểm tra và giữ lại lựa chọn khi chuyển đổi giữa màu sắc và kích cỡ
     document.querySelectorAll('button').forEach(button => {
         button.addEventListener('click', () => {
