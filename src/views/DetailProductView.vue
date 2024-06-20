@@ -45,6 +45,7 @@
                 <div class="input-group-btn">
                   <button
                     class="btn btn-sm btn-minus rounded-circle bg-light border"
+                    @click=" reduceQuanlity"
                   >
                     <i class="fa fa-minus"></i>
                   </button>
@@ -52,11 +53,12 @@
                 <input
                   type="text"
                   class="form-control form-control-sm text-center border-0"
-                  value="1"
+                  :value="quantity"
                 />
                 <div class="input-group-btn">
                   <button
                     class="btn btn-sm btn-plus rounded-circle bg-light border"
+                    @click=" increaseQuanlity"
                   >
                     <i class="fa fa-plus"></i>
                   </button>
@@ -593,7 +595,8 @@ export default {
       cart: [],
       selectedColor: null,
       selectedSize: null,
-      is_loading: true,  // chạy loading trước sao đó mới gọi api
+      is_loading: true,// chạy loading trước sao đó mới gọi api
+      quantity: 1, 
     };
   },
   async created() {
@@ -668,6 +671,14 @@ export default {
     selectSize(size) {
       this.selectedSize = size;
     },
+    increaseQuanlity() {
+      this.quantity++;
+    },
+    reduceQuanlity() {
+      if (this.quantity > 1) {
+        this.quantity--;
+      }
+    }
   },
 };
 
